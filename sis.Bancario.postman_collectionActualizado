@@ -1,0 +1,227 @@
+{
+	"info": {
+		"_postman_id": "215a9f50-74f3-4194-af52-2d8341a760ee",
+		"name": "sis.Bancario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "mostrarAdmin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Carlos\",\r\n    \"correo\":\"ADMINB@gmail.com\",\r\n    \"password\":\"ADMINB\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/adminUsers/mostrarAdmins",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"adminUsers",
+								"mostrarAdmins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "agregarAdmon",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Carlos\",\r\n    \"correo\":\"ADMINB@gmail.com\",\r\n    \"password\":\"ADMINB\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/adminUsers/agregarAdmin",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"adminUsers",
+								"agregarAdmin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizarADMIN",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"pendejo\",\r\n    \"correo\":\"jojojo@gmail.com\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/adminUsers/editarAdmin/647153ef0e5dc5693dd69609",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"adminUsers",
+								"editarAdmin",
+								"647153ef0e5dc5693dd69609"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarAdmin",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/adminUsers/eliminarAdmin/647153ef0e5dc5693dd69609",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"adminUsers",
+								"eliminarAdmin",
+								"647153ef0e5dc5693dd69609"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "post user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Jose\",\r\n    \"correo\":\"jose@gmail.com\",\r\n    \"nickname\":\"josias\",\r\n    \"password\":\"123456\",\r\n    \"DPI\":1234567890101,\r\n    \"direccion\":\"4ta calle zona 23\",\r\n    \"celular\":1128883,\r\n    \"trabajo\":\"guardian\",\r\n    \"ingresos\":3000\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/users/agregarUser",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"agregarUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putUser",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"josesito\",\r\n    \"correo\":\"joss@gmail.com\",\r\n    \"nickname\":\"josiasPro\",\r\n    \"password\":\"123456\",\r\n    \"DPI\":1234567890101,\r\n    \"direccion\":\"4ta calle zona 33\",\r\n    \"celular\":112883331111,\r\n    \"trabajo\":\"guardian\",\r\n    \"ingresos\":3500\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/users/editarUser/64724606e8805a7911f631ad",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"editarUser",
+								"64724606e8805a7911f631ad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarUser",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/users/eliminarUser/64724606e8805a7911f631ad",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"eliminarUser",
+								"64724606e8805a7911f631ad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "mostrarUsers",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
