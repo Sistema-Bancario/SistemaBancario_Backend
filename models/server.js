@@ -1,37 +1,35 @@
-const {dbConection} = require ("../database/config");
+const { dbConection } = require("../database/config");
 const express = require("express");
 const cors = require("cors");
 //const {defaulUser defaultAdmin} = require("../controllers/usuario");
 //const {crearRoles} = require("../middlewares/roles")
 
 class Server {
-    constructor (){
-        this.app = express();
-        this.port = process.env.PORT;
 
-        this.paths = {
-            adminUsers: "/api/adminUsers",
-            users: "/api/users"
-        };
-        //conectar DB
-        this.conectarDB();
+  constructor() {
+    this.app = express();
+    this.port = process.env.PORT;
 
-        //middlewares
-        this.middlewares();
+    this.paths = {
 
-        //rutas de la app
-        this.routes();
+      auth: '/api/auth',
+      adminUsers: "/api/adminUsers",
+      users: "/api/users"
+    };
+    //conectar DB
+    this.conectarDB();
 
-      //  defaultAdmin();
-        //defaulUser();
-        //crearRoles();
-        //defaultDev();
-    }
-    //Función de conexión
-  async conectarDB() {
-    await dbConection();
+    //middlewares
+    this.middlewares();
+
+    //rutas de la app
+    this.routes();
+
+    //  defaultAdmin();
+    //defaulUser();
+    //crearRoles();
+    //defaultDev();
   }
-  
   middlewares() {
     // CORS
     this.app.use(cors());
@@ -42,15 +40,22 @@ class Server {
     //Directorio publico
     this.app.use(express.static("public"));
   }
+  //Función de conexión
+  async conectarDB() {
+    await dbConection();
+  }
+
+  
   routes() {
+    this.app.use(this.paths.auth, require('../routes/auth'));
     this.app.use(this.paths.adminUsers, require("../routes/adminUser"));
     this.app.use(this.paths.users, require("../routes/user"));
-    }
-    listen() {
-      this.app.listen(this.port, () => {
-        console.log("Servidor corriendo en puerto ", this.port);
-      });
-    }
+  }
+  listen() {
+    this.app.listen(this.port, () => {
+      console.log("Servidor corriendo en puerto ", this.port);
+    });
+  }
 }
 //Importamos la clase Server
 module.exports = Server;
