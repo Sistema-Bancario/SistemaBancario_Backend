@@ -14,7 +14,8 @@ class Server {
 
       auth: '/api/auth',
       adminUsers: "/api/adminUsers",
-      users: "/api/users"
+      users: "/api/users",
+      account: "/api/accounts"
     };
     //conectar DB
     this.conectarDB();
@@ -50,6 +51,7 @@ class Server {
     this.app.use(this.paths.auth, require('../routes/auth'));
     this.app.use(this.paths.adminUsers, require("../routes/adminUser"));
     this.app.use(this.paths.users, require("../routes/user"));
+    this.app.use(this.paths.account, require("../routes/account"));
   }
   listen() {
     this.app.listen(this.port, () => {

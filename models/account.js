@@ -2,21 +2,28 @@ const { Schema, model } = require('mongoose');
 
 const CuentaSchema = Schema({
     propietario: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Usuario',
         required: true
     },
-    accountNumber: {
-        type: Number,
+    numeroCuenta: {
+        type: String,
         unique: true,
         required: true
     },
-    typeOfaccount:{
+    tipoCuenta: {
         type: String,
-        required: true  
+        enum: ['monetaria', 'ahorro'],
+        required: true
+    },
+    saldo: {
+        type: Number,
+        default: 0
+    },
+    estado: {
+        type: Boolean,
+        default: true
     }
-
-
-})
+});
 
 module.exports = model('Cuenta', CuentaSchema);
