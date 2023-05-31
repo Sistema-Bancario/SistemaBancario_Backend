@@ -2,6 +2,9 @@ const { response, request } = require('express');
 const bcrypt = require('bcryptjs');
 const Cuenta = require('../models/account')
 const { v4: uuidv4 } = require('uuid');
+const Usuario = require("../models/user");
+const { validarNumeroCuentaUnico } = require('../helpers/db-validatorsAccount');
+const { default: mongoose } = require('mongoose');
 
 const mostrarCuentasActivas = async (req, res) => {
   try {
@@ -19,6 +22,8 @@ const mostrarCuentasActivas = async (req, res) => {
     });
   }
 };
+
+
 
 const crearCuentaBancaria = async (req, res) => {
   try {
@@ -38,7 +43,6 @@ const crearCuentaBancaria = async (req, res) => {
       tipoCuenta,
       saldo
     });
-
     // Guardar la cuenta en la base de datos
     await nuevaCuenta.save();
 
