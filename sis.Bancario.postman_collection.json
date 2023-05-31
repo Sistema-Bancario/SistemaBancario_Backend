@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "215a9f50-74f3-4194-af52-2d8341a760ee",
-		"name": "sis.Bancario",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"_postman_id": "a97559be-4aef-46b9-bb4f-83fad4489ceb",
+		"name": "sis.Bancario Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25979209"
 	},
 	"item": [
 		{
@@ -41,13 +42,42 @@
 					"response": []
 				},
 				{
-					"name": "agregarAdmon",
+					"name": "Login Admin",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\":\"Carlos\",\r\n    \"correo\":\"ADMINB@gmail.com\",\r\n    \"password\":\"ADMINB\"\r\n}",
+							"raw": "{\r\n    \"correo\": \"ADMINB@gmail.com\",\r\n    \"password\": \"123456\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/loginAdmin",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"loginAdmin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "agregarAdmin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Carlos\",\r\n    \"correo\":\"ADMINB@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -155,6 +185,35 @@
 					"response": []
 				},
 				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"correo\": \"jose@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "putUser",
 					"request": {
 						"method": "PUT",
@@ -209,7 +268,10 @@
 					"name": "GetUserById",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -217,7 +279,127 @@
 					"name": "mostrarUsers",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cuenta",
+			"item": [
+				{
+					"name": "Crear cuenta",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDc2YjQ3OWY2YzFjYTJmNTNlMGQ5MjQiLCJpYXQiOjE2ODU1MDEwNzMsImV4cCI6MTY4NTUxOTA3M30.awEiaiqr29duwjRvhmzjOfYVTcTvUhQL3-qm__2mHFs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"propietario\":\"6476b47bf6c1ca2f53e0d927\",\r\n    \"tipoCuenta\":\"ahorro\",\r\n    \"saldo\": 400\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/accounts/crearcuenta",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"accounts",
+								"crearcuenta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Saldo",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDc2YjQ3OWY2YzFjYTJmNTNlMGQ5MjQiLCJpYXQiOjE2ODU1MDEwNzMsImV4cCI6MTY4NTUxOTA3M30.awEiaiqr29duwjRvhmzjOfYVTcTvUhQL3-qm__2mHFs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipoCuenta\":\"monetaria\",\r\n    \"saldo\":50000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/accounts/editar/6476b4cfbe51997603dd4f80",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"accounts",
+								"editar",
+								"6476b4cfbe51997603dd4f80"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar cuenta",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/accounts/eliminar/6474e07eb12cf5cda0ba69a7",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"accounts",
+								"eliminar",
+								"6474e07eb12cf5cda0ba69a7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar cuentas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/accounts/mostrar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"accounts",
+								"mostrar"
+							]
+						}
 					},
 					"response": []
 				}
