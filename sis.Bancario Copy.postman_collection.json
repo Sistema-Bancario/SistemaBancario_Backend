@@ -404,6 +404,26 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Mostrar divisas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/divisa/mostrarDivisas",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"divisa",
+						"mostrarDivisas"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
