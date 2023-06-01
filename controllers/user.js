@@ -7,8 +7,21 @@ const jwt = require('jsonwebtoken');
 
 const postUser = async (req = request, res = response) => {
     //Desestructuración
-    const { nombre, correo, nickname, password, DPI, direccion, celular, trabajo, ingresos } = req.body;
-    const userGuardadoDB = new User({ nombre, correo, nickname, password, DPI, direccion, celular, trabajo, ingresos});
+    const { nombre, correo, nickname, password,cuentas, DPI, direccion, celular, trabajo, ingresos } = req.body;
+    
+    const data = {
+        nombre,
+         correo, 
+         nickname,
+          password,
+          cuentas: [...req.body.cuentas],
+           DPI,
+            direccion,
+             celular,
+              trabajo,
+               ingresos
+    }
+    const userGuardadoDB = new User(data);
 
     //Encriptar password
     const salt = bcrypt.genSaltSync();
@@ -109,6 +122,7 @@ const putUser = async (req = request, res = response) => {
              resto.password = bcrypt.hashSync(resto.password, salt);
         }
          //Editar al usuario por el id
+         resto.cuentas= [...req.body.cuentas];
          const usuarioEditado = await User.findByIdAndUpdate(id, resto);
     
          res.json({

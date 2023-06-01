@@ -43,8 +43,20 @@ const crearCuentaBancaria = async (req, res) => {
       tipoCuenta,
       saldo
     });
+    
     // Guardar la cuenta en la base de datos
     await nuevaCuenta.save();
+    //agregar el id de la cuenta al nuevo propietario
+    const usuarioDB = await Usuario.findById(propietario);
+    if (!usuarioDB) {
+        return res.status(400).json({
+          msg: "la persona no existe en la db"
+        })
+    }
+    
+    usuarioDB.cuentas.push(nuevaCuenta._id);
+
+    await usuarioDB.save();
 
     res.json({
       message: 'Cuenta bancaria creada exitosamente',
