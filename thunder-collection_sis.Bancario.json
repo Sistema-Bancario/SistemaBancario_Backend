@@ -1,0 +1,287 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "sis.Bancario",
+    "dateExported": "2023-06-01T23:32:26.486Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "d7a8b9af-3516-44c1-a35e-33018e8302a6",
+            "name": "admin",
+            "containerId": "",
+            "created": "2023-06-01T23:09:59.132Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "b7be1f79-8a7b-4c36-836e-26f6070e4a90",
+            "name": "user",
+            "containerId": "",
+            "created": "2023-06-01T23:09:59.133Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "4993e13c-31ae-470b-8710-a6439cd32ca6",
+            "name": "cuenta",
+            "containerId": "",
+            "created": "2023-06-01T23:09:59.134Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "2e2af26e-0817-4192-980d-278ddc2b2e57",
+            "name": "transaction",
+            "containerId": "",
+            "created": "2023-06-01T23:10:08.110Z",
+            "sortNum": 40000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "126076f7-ca6f-4482-a110-13082def12d8",
+            "colId": "0e45446c-d51e-49ac-a94d-9f8e3291971e",
+            "containerId": "d7a8b9af-3516-44c1-a35e-33018e8302a6",
+            "name": "mostrarAdmin",
+            "url": "localhost:8080/api/adminUsers/mostrarAdmins",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-06-01T23:09:59.132Z",
+            "modified": "2023-06-01T23:09:59.132Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"nombre\":\"Carlos\",\r\n    \"correo\":\"ADMINB@gmail.com\",\r\n    \"password\":\"ADMINB\"\r\n}"
+            }
+        },
+        {
+            "_id": "c852b6d2-8840-4820-926b-515c127ec41f",
+            "colId": "0e45446c-d51e-49ac-a94d-9f8e3291971e",
+            "containerId": "d7a8b9af-3516-44c1-a35e-33018e8302a6",
+            "name": "Login Admin",
+            "url": "localhost:8080/api/auth/loginAdmin",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-06-01T23:09:59.133Z",
+            "modified": "2023-06-01T23:09:59.133Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"correo\": \"ADMINB@gmail.com\",\r\n    \"password\": \"123456\"\r\n}\r\n"
+            }
+        },
+        {
+            "_id": "b921c35b-e4bf-445b-be15-0ee0e23d3935",
+            "colId": "0e45446c-d51e-49ac-a94d-9f8e3291971e",
+            "containerId": "d7a8b9af-3516-44c1-a35e-33018e8302a6",
+            "name": "agregarAdmin",
+            "url": "localhost:8080/api/adminUsers/agregarAdmin",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-06-01T23:09:59.134Z",
+            "modified": "2023-06-01T23:09:59.134Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"nombre\":\"Carlos\",\r\n    \"correo\":\"ADMINB@gmail.com\",\r\n    \"password\":\"123456\"\r\n}"
+            }
+        },
+        {
+            "_id": "cd170b91-85bb-4df5-aba9-d060666f8afd",
+            "colId": "0e45446c-d51e-49ac-a94d-9f8e3291971e",
+            "containerId": "d7a8b9af-3516-44c1-a35e-33018e8302a6",
+            "name": "actualizarADMIN",
+            "url": "localhost:8080/api/adminUsers/editarAdmin/647153ef0e5dc5693dd69609",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2023-06-01T23:09:59.136Z",
+            "modified": "2023-06-01T23:09:59.136Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"nombre\":\"pendejo\",\r\n    \"correo\":\"jojojo@gmail.com\"\r\n    \r\n}"
+            }
+        },
+        {
+            "_id": "be06ccdb-cb66-4955-a4fe-1e8b6d2d21bb",
+            "colId": "0e45446c-d51e-49ac-a94d-9f8e3291971e",
+            "containerId": "d7a8b9af-3516-44c1-a35e-33018e8302a6",
+            "name": "eliminarAdmin",
+            "url": "localhost:8080/api/adminUsers/eliminarAdmin/647153ef0e5dc5693dd69609",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2023-06-01T23:09:59.137Z",
+            "modified": "2023-06-01T23:09:59.137Z",
+            "headers": []
+        },
+        {
+            "_id": "ae1535a9-a1b1-4cd2-a2b2-c966ae2ab7af",
+            "colId": "0e45446c-d51e-49ac-a94d-9f8e3291971e",
+            "containerId": "b7be1f79-8a7b-4c36-836e-26f6070e4a90",
+            "name": "post user",
+            "url": "localhost:8080/api/users/agregarUser",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2023-06-01T23:09:59.138Z",
+            "modified": "2023-06-01T23:20:20.494Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"nombre\":\"Angel\",\n    \"correo\":\"angel@gmail.com\",\n    \"nickname\":\"angel\",\n    \"password\":\"123456\",\n    \"DPI\":6789678546,\n    \"direccion\":\"4ta calle zona 23\",\n    \"celular\":1128883,\n    \"trabajo\":\"guardian\",\n    \"ingresos\":2000\n    \n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "7c209d56-7274-403d-bd7e-f2df4e72dd66",
+            "colId": "0e45446c-d51e-49ac-a94d-9f8e3291971e",
+            "containerId": "b7be1f79-8a7b-4c36-836e-26f6070e4a90",
+            "name": "Login User",
+            "url": "localhost:8080/api/auth/login",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2023-06-01T23:09:59.139Z",
+            "modified": "2023-06-01T23:21:07.724Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"correo\": \"angel@gmail.com\",\n    \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "ed2733d6-e2cd-4c52-885e-bdc291f205cb",
+            "colId": "0e45446c-d51e-49ac-a94d-9f8e3291971e",
+            "containerId": "b7be1f79-8a7b-4c36-836e-26f6070e4a90",
+            "name": "putUser",
+            "url": "localhost:8080/api/users/editarUser/64724606e8805a7911f631ad",
+            "method": "PUT",
+            "sortNum": 80000,
+            "created": "2023-06-01T23:09:59.140Z",
+            "modified": "2023-06-01T23:09:59.140Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"nombre\":\"josesito\",\r\n    \"correo\":\"joss@gmail.com\",\r\n    \"nickname\":\"josiasPro\",\r\n    \"password\":\"123456\",\r\n    \"DPI\":1234567890101,\r\n    \"direccion\":\"4ta calle zona 33\",\r\n    \"celular\":112883331111,\r\n    \"trabajo\":\"guardian\",\r\n    \"ingresos\":3500\r\n    \r\n}"
+            }
+        },
+        {
+            "_id": "c101909a-b805-4a74-b55f-d2a0671bec86",
+            "colId": "0e45446c-d51e-49ac-a94d-9f8e3291971e",
+            "containerId": "b7be1f79-8a7b-4c36-836e-26f6070e4a90",
+            "name": "eliminarUser",
+            "url": "localhost:8080/api/users/eliminarUser/64724606e8805a7911f631ad",
+            "method": "DELETE",
+            "sortNum": 90000,
+            "created": "2023-06-01T23:09:59.141Z",
+            "modified": "2023-06-01T23:09:59.141Z",
+            "headers": []
+        },
+        {
+            "_id": "5ac6c8b7-5aad-4341-a359-fbed51abe0cc",
+            "colId": "0e45446c-d51e-49ac-a94d-9f8e3291971e",
+            "containerId": "b7be1f79-8a7b-4c36-836e-26f6070e4a90",
+            "name": "GetUserById",
+            "url": "",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2023-06-01T23:09:59.142Z",
+            "modified": "2023-06-01T23:09:59.142Z",
+            "headers": []
+        },
+        {
+            "_id": "4e910072-3002-42a5-b6fb-12ba69adc007",
+            "colId": "0e45446c-d51e-49ac-a94d-9f8e3291971e",
+            "containerId": "b7be1f79-8a7b-4c36-836e-26f6070e4a90",
+            "name": "mostrarUsers",
+            "url": "",
+            "method": "GET",
+            "sortNum": 110000,
+            "created": "2023-06-01T23:09:59.143Z",
+            "modified": "2023-06-01T23:09:59.143Z",
+            "headers": []
+        },
+        {
+            "_id": "fa98f706-5356-4c02-8b1d-7b8a1bb00e68",
+            "colId": "0e45446c-d51e-49ac-a94d-9f8e3291971e",
+            "containerId": "4993e13c-31ae-470b-8710-a6439cd32ca6",
+            "name": "Crear cuenta",
+            "url": "localhost:8080/api/accounts/crearcuenta",
+            "method": "POST",
+            "sortNum": 120000,
+            "created": "2023-06-01T23:09:59.144Z",
+            "modified": "2023-06-01T23:20:30.768Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"propietario\":\"647927b4b600d48f1dd8cd3e\",\n    \"tipoCuenta\":\"ahorro\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "0de48667-e32f-4899-b0df-13655ac42203",
+            "colId": "0e45446c-d51e-49ac-a94d-9f8e3291971e",
+            "containerId": "4993e13c-31ae-470b-8710-a6439cd32ca6",
+            "name": "Editar Saldo",
+            "url": "localhost:8080/api/accounts/editar/6474dc2b2f4d68d03b1e1d4b",
+            "method": "PUT",
+            "sortNum": 130000,
+            "created": "2023-06-01T23:09:59.145Z",
+            "modified": "2023-06-01T23:09:59.145Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"saldo\":50000\r\n}"
+            }
+        },
+        {
+            "_id": "231656ce-acc6-4563-b7bf-c2d895d44d39",
+            "colId": "0e45446c-d51e-49ac-a94d-9f8e3291971e",
+            "containerId": "4993e13c-31ae-470b-8710-a6439cd32ca6",
+            "name": "Eliminar cuenta",
+            "url": "localhost:8080/api/accounts/eliminar/6474e07eb12cf5cda0ba69a7",
+            "method": "DELETE",
+            "sortNum": 140000,
+            "created": "2023-06-01T23:09:59.146Z",
+            "modified": "2023-06-01T23:09:59.146Z",
+            "headers": []
+        },
+        {
+            "_id": "c4743edb-2dd3-487e-b379-5ad96e45fa56",
+            "colId": "0e45446c-d51e-49ac-a94d-9f8e3291971e",
+            "containerId": "4993e13c-31ae-470b-8710-a6439cd32ca6",
+            "name": "Mostrar cuentas",
+            "url": "localhost:8080/api/accounts/mostrar",
+            "method": "GET",
+            "sortNum": 150000,
+            "created": "2023-06-01T23:09:59.147Z",
+            "modified": "2023-06-01T23:09:59.147Z",
+            "headers": []
+        },
+        {
+            "_id": "614ba747-58da-416d-81a4-07388ea8ebab",
+            "colId": "0e45446c-d51e-49ac-a94d-9f8e3291971e",
+            "containerId": "2e2af26e-0817-4192-980d-278ddc2b2e57",
+            "name": "Realizar Transferencia",
+            "url": "localhost:8080/api/transactions/hacerTransaccion",
+            "method": "POST",
+            "sortNum": 160000,
+            "created": "2023-06-01T23:16:31.730Z",
+            "modified": "2023-06-01T23:30:20.174Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDc5MjdiNGI2MDBkNDhmMWRkOGNkM2UiLCJpYXQiOjE2ODU2NjE2NjcsImV4cCI6MTY4NTY3OTY2N30.aALE3dvCVoag3IHtNCYQNGpdzyuYEZLEWb99bqJJ9yU"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"cuentaDestino\":\"9bc166f0-7e58-47c2-bd9f-dbd3b1587489\",\n  \"monto\":100\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
