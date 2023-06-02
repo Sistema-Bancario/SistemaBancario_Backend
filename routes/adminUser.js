@@ -29,7 +29,8 @@ router.get('/mostrarAdmin/:id',[
 router.post(
   "/agregarAdmin",
   [
-    
+    validarJWT,
+    tieneRole("ADMIN_USER"),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check("password", "El password debe de ser más de 5 digitos").isLength({
       min: 5,
@@ -50,9 +51,8 @@ router.put('/editarAdmin/:id', [
 
 
 router.delete('/eliminarAdmin/:id', [
-   // validarJWT,
-    //esAdminRole,
-   // tieneRole('ADMIN_ROLE'),
+    validarJWT,
+   tieneRole('ADMIN_ROLE'),
     check('id', 'No es un ID válido').isMongoId(),
     check('id').custom( existeUsuarioPorId ),
    // validarCampos

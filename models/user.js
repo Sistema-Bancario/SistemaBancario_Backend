@@ -18,7 +18,13 @@ const UsuarioSchema = Schema({
     password: {
         type: String,
         required: [true, 'El password es obligatorio' ]
+        
     },
+    cuentas: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Cuenta',
+        required: true
+    }],
     DPI: {
         type: Number,
         required: [true, 'El DPI es obligatorio' ]

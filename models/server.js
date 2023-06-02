@@ -1,7 +1,9 @@
 const { dbConection } = require("../database/config");
 const express = require("express");
 const cors = require("cors");
-//const {defaulUser defaultAdmin} = require("../controllers/usuario");
+const { defaulUser} = require("../controllers/user");
+const { defaultAdmin} = require("../controllers/adminUser");
+
 //const {crearRoles} = require("../middlewares/roles")
 
 class Server {
@@ -27,10 +29,9 @@ class Server {
     //rutas de la app
     this.routes();
 
-    //  defaultAdmin();
-    //defaulUser();
-    //crearRoles();
-    //defaultDev();
+   // defaultAdmin();
+    defaultAdmin();
+    
   }
   middlewares() {
     // CORS
