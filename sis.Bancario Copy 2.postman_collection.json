@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "a97559be-4aef-46b9-bb4f-83fad4489ceb",
-		"name": "sis.Bancario Copy",
+		"_postman_id": "0ca31917-29b3-4b6a-a0f5-ac9c05217bd2",
+		"name": "sis.Bancario Copy 2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25979209"
 	},
@@ -48,7 +48,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"correo\": \"ADMINB@gmail.com\",\r\n    \"password\": \"123456\"\r\n}\r\n",
+							"raw": "{\r\n    \"correo\": \"admin@gmail.com\",\r\n    \"password\": \"ADMINB\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -159,10 +159,51 @@
 					"name": "post user",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDdiYjdmMTBjZjUzMDMyNmU0MGZmZDciLCJpYXQiOjE2ODU4Mjk3NjUsImV4cCI6MTY4NTg0Nzc2NX0.-JK-JBprqIfr4DVeqMRAia74b0NPSoNmfGICqa9GBjA",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\":\"Jose\",\r\n    \"correo\":\"jose@gmail.com\",\r\n    \"nickname\":\"josias\",\r\n    \"password\":\"123456\",\r\n    \"DPI\":1234567890101,\r\n    \"direccion\":\"4ta calle zona 23\",\r\n    \"celular\":1128883,\r\n    \"trabajo\":\"guardian\",\r\n    \"ingresos\":3000\r\n    \r\n}",
+							"raw": "{\r\n    \"nombre\":\"Jose\",\r\n    \"correo\":\"jose@gmail.com\",\r\n    \"nickname\":\"josias\",\r\n    \"password\":\"123456\",\r\n    \"DPI\":1234567890101,\r\n    \"direccion\":\"4ta calle zona 23\",\r\n    \"celular\":1128883,\r\n    \"trabajo\":\"guardian\",\r\n    \"ingresos\":3000,\r\n    \"cuentas\":[\r\n        \r\n    ]\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/users/agregarUser",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"agregarUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post user 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDdiYjdmMTBjZjUzMDMyNmU0MGZmZDciLCJpYXQiOjE2ODU4Mjk3NjUsImV4cCI6MTY4NTg0Nzc2NX0.-JK-JBprqIfr4DVeqMRAia74b0NPSoNmfGICqa9GBjA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Camavinga\",\r\n    \"correo\":\"pedri@gmail.com\",\r\n    \"nickname\":\"chepe\",\r\n    \"password\":\"123456\",\r\n    \"DPI\":1234567898931,\r\n    \"direccion\":\"4ta calle zona 23\",\r\n    \"celular\":89347,\r\n    \"trabajo\":\"guardian\",\r\n    \"ingresos\":3000,\r\n    \"cuentas\":[\r\n        \r\n    ]\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -298,13 +339,48 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDc2YjQ3OWY2YzFjYTJmNTNlMGQ5MjQiLCJpYXQiOjE2ODU1MDEwNzMsImV4cCI6MTY4NTUxOTA3M30.awEiaiqr29duwjRvhmzjOfYVTcTvUhQL3-qm__2mHFs",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDdiYjdmMTBjZjUzMDMyNmU0MGZmZDciLCJpYXQiOjE2ODU4Mjk3NjUsImV4cCI6MTY4NTg0Nzc2NX0.-JK-JBprqIfr4DVeqMRAia74b0NPSoNmfGICqa9GBjA",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"propietario\":\"6476b47bf6c1ca2f53e0d927\",\r\n    \"tipoCuenta\":\"ahorro\",\r\n    \"saldo\": 400\r\n}",
+							"raw": "{\r\n    \"propietario\":\"647bb89736523a489e759bb0\",\r\n    \"tipoCuenta\":\"ahorro\",\r\n    \"saldo\": 400\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/accounts/crearcuenta",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"accounts",
+								"crearcuenta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear cuenta Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDdiYjdmMTBjZjUzMDMyNmU0MGZmZDciLCJpYXQiOjE2ODU4Mjk3NjUsImV4cCI6MTY4NTg0Nzc2NX0.-JK-JBprqIfr4DVeqMRAia74b0NPSoNmfGICqa9GBjA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"propietario\":\"647bb8a436523a489e759bb6\",\r\n    \"tipoCuenta\":\"ahorro\",\r\n    \"saldo\": 40000\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -406,24 +482,91 @@
 			]
 		},
 		{
-			"name": "Mostrar divisas",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/api/divisa/mostrarDivisas",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"divisa",
-						"mostrarDivisas"
-					]
+			"name": "transaccion",
+			"item": [
+				{
+					"name": "Transferencia",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDdiYjg5NzM2NTIzYTQ4OWU3NTliYjAiLCJpYXQiOjE2ODU4MzA4NTUsImV4cCI6MTY4NTg0ODg1NX0.3ABXMDdIsdVNx7zyFv3NRoSOxg1cUz93m0D9c3Jx7g4",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cuentaOrigen\":\"87430136-c37b-423b-ac65-163ab1e202d7\", \r\n    \"cuentaDestino\": \"8fccd324-b9e0-4385-8066-bfc39dcad8e7\", \r\n    \"monto\": 100,\r\n    \"descripcion\": \"pago cas\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/transactions/hacerTransaccion",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"transactions",
+								"hacerTransaccion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/transactions/vertransacciones/87430136-c37b-423b-ac65-163ab1e202d7",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"transactions",
+								"vertransacciones",
+								"87430136-c37b-423b-ac65-163ab1e202d7"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "Divisa",
+			"item": [
+				{
+					"name": "Mostrar divisas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/divisa/mostrarDivisas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"divisa",
+								"mostrarDivisas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

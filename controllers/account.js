@@ -33,6 +33,24 @@ const crearCuentaBancaria = async (req, res) => {
       throw new Error('No se pudo generar el número de cuenta');
     }
 
+    // Verificar si el propietario existe
+    const propietarioExistente = await Usuario.findById(propietario);
+
+    if (!propietarioExistente) {
+      return res.status(404).json({
+        message: 'El propietario de la cuenta no existe'
+      });
+    }
+
+    // Verificar si la cuenta de origen ya existe
+    const cuentaExistente = await Cuenta.findOne({ numeroCuenta });
+
+    if (cuentaExistente) {
+      return res.status(400).json({
+        message: 'La cuenta de origen ya existe'
+      });
+    }
+
     // Crear la cuenta bancaria
     const nuevaCuenta = new Cuenta({
       propietario,
@@ -44,17 +62,9 @@ const crearCuentaBancaria = async (req, res) => {
     // Guardar la cuenta en la base de datos
     await nuevaCuenta.save();
 
-    // Agregar la cuenta al usuario
-    const usuarioDB = await Usuario.findById(propietario);
-    if (!usuarioDB) {
-      return res.status(400).json({
-        message: 'La persona no existe en la base de datos'
-      });
-    }
-
-    usuarioDB.cuentas.push(nuevaCuenta);
-
-    await usuarioDB.save();
+    // Agregar el id de la cuenta al nuevo propietario
+    propietarioExistente.cuentas.push(nuevaCuenta._id);
+    await propietarioExistente.save();
 
     res.json({
       message: 'Cuenta bancaria creada exitosamente',

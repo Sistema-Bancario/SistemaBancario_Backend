@@ -20,10 +20,9 @@ const UsuarioSchema = Schema({
         required: [true, 'El password es obligatorio' ]
         
     },
-    cuentas: [{
+    cuentas: [{                                // Agregué el campo 'cuentas' como un arreglo
         type: Schema.Types.ObjectId,
-        ref: 'Cuenta',
-        required: true
+        ref: 'Cuenta'
     }],
     DPI: {
         type: Number,
