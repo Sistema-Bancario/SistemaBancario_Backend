@@ -2,7 +2,7 @@ const { response, request } = require('express');
 const bcrypt = require('bcryptjs');
 const Cuenta = require('../models/account')
 const { v4: uuidv4 } = require('uuid');
-
+const Usuario = require('../models/user');
 
 
 const mostrarCuentasActivas = async (req, res) => {
@@ -22,8 +22,6 @@ const mostrarCuentasActivas = async (req, res) => {
   }
 };
 
-
-
 const crearCuentaBancaria = async (req, res) => {
   try {
     const { propietario, tipoCuenta, saldo } = req.body;
@@ -42,18 +40,19 @@ const crearCuentaBancaria = async (req, res) => {
       tipoCuenta,
       saldo
     });
-    
+
     // Guardar la cuenta en la base de datos
     await nuevaCuenta.save();
-    //agregar el id de la cuenta al nuevo propietario
+
+    // Agregar la cuenta al usuario
     const usuarioDB = await Usuario.findById(propietario);
     if (!usuarioDB) {
-        return res.status(400).json({
-          msg: "la persona no existe en la db"
-        })
+      return res.status(400).json({
+        message: 'La persona no existe en la base de datos'
+      });
     }
-    
-    usuarioDB.cuentas.push(nuevaCuenta._id);
+
+    usuarioDB.cuentas.push(nuevaCuenta);
 
     await usuarioDB.save();
 

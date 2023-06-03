@@ -3,7 +3,7 @@ const Cuenta = require('../models/account');
 const Usuario = require('../models/user');
 
 // Método para realizar una transferencia de dinero
-exports.realizarTransferencia = async (req, res) => {
+const realizarTransferencia = async (req, res) => {
   const id = req.usuario.id
   try {
     //Se pide solo cuentadestino y monto, ya que se obtiene por el token la cuenta del origen
@@ -46,3 +46,7 @@ exports.realizarTransferencia = async (req, res) => {
     res.status(500).json({ mensaje: 'Error al realizar la transferencia.' });
   }
 };
+
+module.exports = (
+  realizarTransferencia
+ )
