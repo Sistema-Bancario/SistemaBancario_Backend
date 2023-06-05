@@ -20,6 +20,12 @@ const transferir = async (req, res) => {
       });
     }
 
+    if (monto> 10000){
+      return res.status(400).json({
+        message: 'El monto no debe ser mayor a 10000'
+      })
+    }
+
     if (monto <= 0) {
       return res.status(400).json({
         message: 'El monto debe ser mayor a cero'
@@ -32,20 +38,11 @@ const transferir = async (req, res) => {
       });
     }
 
-    if (cuentaOrigenDB.tipoCuenta !== tipoCuenta) {
-      return res.status(400).json({
-        message: 'El tipo de cuenta de origen no coincide'
-      });
-    }
-
-    if (cuentaDestinoDB.tipoCuenta !== tipoCuenta) {
-      return res.status(400).json({
-        message: 'El tipo de cuenta de destino no coincide'
-      });
-    }
-
     cuentaOrigenDB.saldo -= monto;
     cuentaDestinoDB.saldo += monto;
+
+    cuentaOrigenDB.cantidadTransferencias++;
+    cuentaDestinoDB.cantidadTransferencias++;
 
     // Guardar los cambios en las cuentas
     await cuentaOrigenDB.save();

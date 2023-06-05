@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "0ca31917-29b3-4b6a-a0f5-ac9c05217bd2",
+		"_postman_id": "f02c0619-2439-42dd-8570-ec6d49d1a9c3",
 		"name": "sis.Bancario Copy 2",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25979209"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -36,6 +35,26 @@
 								"api",
 								"adminUsers",
 								"mostrarAdmins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mostrarCuentasConMasTransferencias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/accounts/mostrarCuentasConMasTransferencias",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"accounts",
+								"mostrarCuentasConMasTransferencias"
 							]
 						}
 					},
