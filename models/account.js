@@ -27,7 +27,11 @@ const CuentaSchema = Schema({
     transferencias: [{
         type: Schema.Types.ObjectId,
         ref: 'Transferencia'
-      }]
+      }],
+    cantidadTransferencias: {
+        type: Number,
+        default: 0
+    },
 });
 
 module.exports = model('Cuenta', CuentaSchema);

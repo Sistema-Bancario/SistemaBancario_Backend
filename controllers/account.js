@@ -22,6 +22,28 @@ const mostrarCuentasActivas = async (req, res) => {
   }
 };
 
+const obtenerCuentasConMasTransferencias = async (req, res) => {
+
+  try {
+    const orden = req.query.odren || 'asc';
+    const cuentas = await Cuenta.find()
+    .sort({ cantidadTransferencias: orden === 'desc' ? -1 : 1 })
+    .populate('propietario', 'nombre correo')
+    .exec();
+
+    res.json({
+      cuentas
+    })
+   
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: 'Error al obtener las cuentas bancarias activas'
+    });
+  }
+};
+
+
 const crearCuentaBancaria = async (req, res) => {
   try {
     const { propietario, tipoCuenta, saldo } = req.body;
@@ -154,7 +176,11 @@ module.exports = {
   editarSaldoCuenta,
   eliminarCuenta,
   mostrarCuentasActivas,
+<<<<<<< HEAD
   
+=======
+  obtenerCuentasConMasTransferencias
+>>>>>>> 52daf9c939c891089bf7557271f6ac72138f8631
 };
 
 
