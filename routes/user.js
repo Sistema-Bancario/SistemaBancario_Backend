@@ -1,13 +1,19 @@
 //Importaciones
 const { Router } = require('express');
 const { check } = require('express-validator');
-const {  getUsers,putUser,deleteUser,postUser, getUsersById } = require('../controllers/user');
+const {  getUsers,putUser,deleteUser,postUser, getUsersById, obtenerCuentasUsuario } = require('../controllers/user');
 const {  emailExiste, existeUsuarioPorId, nickUnico } = require('../helpers/db-validators');
 const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
 const { tieneRole } = require('../middlewares/validar-role-admin');
 
+
 const router = Router();
+
+router.get("/mostrarCuentasUsuario",[
+  validarJWT
+], obtenerCuentasUsuario)
+
 
 //router.get('/mostrarById/:token', getUsersById);
 router.get('/mostrarById/:id',[

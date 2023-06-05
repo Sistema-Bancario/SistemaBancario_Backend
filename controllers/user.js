@@ -187,13 +187,49 @@ const deleteUser = async (req = request, res = response) => {
 
 } */
 
+
+
+const obtenerCuentasUsuario = async (req, res) => {
+    try {
+      // Obtener el ID del usuario desde el token
+      const usuarioId = req.user.id;
+  
+      // Consultar el usuario con sus cuentas asociadas
+      const usuario = await Usuario.findById(usuarioId).populate('cuentas');
+  
+      if (!usuario) {
+        return res.status(404).json({
+          message: 'Usuario no encontrado'
+        });
+      }
+  
+      // Obtener la información de las cuentas y su saldo actual
+      const cuentas = usuario.cuentas.map((cuenta) => ({
+        numeroCuenta: cuenta.numeroCuenta,
+        saldo: cuenta.saldo
+      }));
+  
+      res.json({
+        usuarioId: usuario._id,
+        nombre: usuario.nombre,
+        cuentas
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        message: 'Error al obtener las cuentas del usuario'
+      });
+    }
+  };
+
 module.exports = {
     getUsers,
     putUser,
     deleteUser,
     postUser,
     getUsersById,
-    defaultUser
+    defaultUser,
+    obtenerCuentasUsuario
     // eliminarUserByToken,
     //getUserPorToken,
 }

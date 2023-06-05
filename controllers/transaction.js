@@ -3,7 +3,7 @@ const Cuenta = require('../models/account');
 
 const transferir = async (req, res) => {
   try {
-    const { cuentaOrigen, cuentaDestino, monto, descripcion, tipoCuenta } = req.body;
+    const { cuentaOrigen, cuentaDestino, monto, descripcion } = req.body;
 
     const cuentaOrigenDB = await Cuenta.findOne({ numeroCuenta: cuentaOrigen });
     const cuentaDestinoDB = await Cuenta.findOne({ numeroCuenta: cuentaDestino });
@@ -32,18 +32,6 @@ const transferir = async (req, res) => {
       });
     }
 
-    if (cuentaOrigenDB.tipoCuenta !== tipoCuenta) {
-      return res.status(400).json({
-        message: 'El tipo de cuenta de origen no coincide'
-      });
-    }
-
-    if (cuentaDestinoDB.tipoCuenta !== tipoCuenta) {
-      return res.status(400).json({
-        message: 'El tipo de cuenta de destino no coincide'
-      });
-    }
-
     cuentaOrigenDB.saldo -= monto;
     cuentaDestinoDB.saldo += monto;
 
@@ -56,7 +44,7 @@ const transferir = async (req, res) => {
       cuentaDestino,
       monto,
       descripcion,
-      tipoCuenta
+      tipoCuenta: cuentaOrigenDB.tipoCuenta
     });
 
     const transferenciaDestino = new Transferencia({
@@ -64,7 +52,7 @@ const transferir = async (req, res) => {
       cuentaDestino,
       monto,
       descripcion,
-      tipoCuenta
+      tipoCuenta: cuentaDestinoDB.tipoCuenta
     });
 
     await transferenciaOrigen.save();
@@ -82,11 +70,13 @@ const transferir = async (req, res) => {
       message: 'Transferencia realizada exitosamente',
       cuentaOrigen: {
         numeroCuenta: cuentaOrigenDB.numeroCuenta,
-        saldo: cuentaOrigenDB.saldo
+        saldo: cuentaOrigenDB.saldo,
+        tipoCuenta: cuentaOrigenDB.tipoCuenta
       },
       cuentaDestino: {
         numeroCuenta: cuentaDestinoDB.numeroCuenta,
-        saldo: cuentaDestinoDB.saldo
+        saldo: cuentaDestinoDB.saldo,
+        tipoCuenta: cuentaDestinoDB.tipoCuenta // Se agrega el tipo de cuenta de destino
       },
       transferenciaOrigen,
       transferenciaDestino
@@ -98,6 +88,8 @@ const transferir = async (req, res) => {
     });
   }
 };
+
+
 
 
 const mostrarTransaccionesPorNumeroCuenta = async (req, res) => {

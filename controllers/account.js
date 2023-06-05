@@ -147,11 +147,14 @@ const eliminarCuenta = async (req, res) => {
 
 
 
+
+
 module.exports = {
   crearCuentaBancaria,
   editarSaldoCuenta,
   eliminarCuenta,
-  mostrarCuentasActivas
+  mostrarCuentasActivas,
+  
 };
 
 
