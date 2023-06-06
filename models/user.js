@@ -44,6 +44,10 @@ const UsuarioSchema = Schema({
         type: Number,
         required: [true, 'sus ingresos son obligatorios' ]
     },
+    favoritos: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Favorito'
+    }],
     img: {
         type: String
     },
