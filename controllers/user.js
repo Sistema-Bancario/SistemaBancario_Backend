@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 //Importación del modelo
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
-const user = require('../models/user');
 
 
 const postUser = async (req = request, res = response) => {
