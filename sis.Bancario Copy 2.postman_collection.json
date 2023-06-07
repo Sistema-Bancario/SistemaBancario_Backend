@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f02c0619-2439-42dd-8570-ec6d49d1a9c3",
+		"_postman_id": "c71e477b-38a5-4410-8430-b9d92a7dc36b",
 		"name": "sis.Bancario Copy 2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -580,6 +580,66 @@
 								"api",
 								"divisa",
 								"mostrarDivisas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Favoritos",
+			"item": [
+				{
+					"name": "Agregar Favoritos",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDdkNGRiNWEzNThiZWJhZjZjNWI1ZTQiLCJpYXQiOjE2ODYwOTU0MzksImV4cCI6MTY4NjExMzQzOX0.PGReZoesOJ9GEoGUGTYfVpXdxmEAVxoOjyrnRXlFDo4",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numeroCuenta\": \"bb320360-515c-47bf-b064-2cf74a46f05d\",\r\n  \"tipoCuenta\": \"monetaria\",\r\n  \"nickname\": \"MiCuentaFavorita\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/favorites/crearFavorito",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"favorites",
+								"crearFavorito"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar Favoritos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/favorites/mostrar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"favorites",
+								"mostrar"
 							]
 						}
 					},

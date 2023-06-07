@@ -1,20 +1,24 @@
+
 const { Schema, model } = require('mongoose');
 
 const FavoritoSchema = Schema({
     numeroCuenta: {
-        type: Schema.Types.ObjectId,
-        ref: 'Cuenta',
-        required: true
+        type: String,
+        required: true,
+        unique: true
     },
     tipoCuenta: {
-        type: Schema.Types.ObjectId,
-        ref: 'Cuenta',
+        type: String,
         required: true
     },
     nickname: {
         type: String,
-        required: [true, 'El nickname es obligatorio' ],
+        required: [true, 'El nickname es obligatorio'],
         unique: true
+    },
+    fecha: {
+        type: Date,
+        default: Date.now
     }
 });
 

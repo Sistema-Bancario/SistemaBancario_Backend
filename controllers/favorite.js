@@ -3,12 +3,13 @@ const Favorito = require('../models/favorite');
 
 const mostrarCuentasFavoritas = async (req, res) => {
     try {
-        const cuentasFavoritas = await Favorito.find({ estado: true })
+        const cuentasFavoritas = await Favorito.find()
 
         res.json({
             message: 'Cuentas favoritas',
             cuentas: cuentasFavoritas
         });
+
     } catch (error) {
         console.error(error);
         res.status(500).json({
@@ -17,37 +18,40 @@ const mostrarCuentasFavoritas = async (req, res) => {
     }
 };
 
+
 const postCuentaFavorita = async (req, res) => {
     try {
-        const { numeroCuenta, tipoCuenta, nickname } = req.body;
-
-        const cuentaExistente = await Favorito.findOne({ numeroCuenta });
-
-        if (cuentaExistente) {
-            return res.status(400).json({
-                message: 'La cuenta ya existe'
-            });
-        }
-
-        const crearFavorito = new Favorito({
-            numeroCuenta,
-            tipoCuenta,
-            nickname
+      const { numeroCuenta, tipoCuenta, nickname } = req.body;
+  
+      const cuentaExistente = await Favorito.findOne({ numeroCuenta });
+  
+      if (cuentaExistente) {
+        return res.status(400).json({
+          message: 'La cuenta ya existe'
         });
-
-        await crearFavorito.save();
-
-        res.json({
-            message: 'Cuenta favorita guardada',
-            cuenta: crearFavorito
-        });
+      }
+  
+      const crearFavorito = new Favorito({
+        numeroCuenta,
+        tipoCuenta,
+        nickname,
+        fecha: new Date()
+      });
+  
+      await crearFavorito.save();
+  
+      res.json({
+        message: 'Cuenta favorita guardada',
+        cuenta: crearFavorito
+      });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({
-            message: 'Error al crear guardar favorito'
-        });
+      console.error(error);
+      res.status(500).json({
+        message: 'Error al guardar el favorito'
+      });
     }
-};
+  };
+  
 
 module.exports = {
     mostrarCuentasFavoritas,
