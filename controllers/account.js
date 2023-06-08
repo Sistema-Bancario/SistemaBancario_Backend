@@ -43,7 +43,6 @@ const obtenerCuentasConMasTransferencias = async (req, res) => {
   }
 };
 
-
 const crearCuentaBancaria = async (req, res) => {
   try {
     const { propietario, tipoCuenta, saldo } = req.body;
@@ -167,10 +166,6 @@ const eliminarCuenta = async (req, res) => {
 
 
 
-
-
-
-
 module.exports = {
   crearCuentaBancaria,
   editarSaldoCuenta,
@@ -178,5 +173,4 @@ module.exports = {
   mostrarCuentasActivas,
   obtenerCuentasConMasTransferencias
 };
-
 

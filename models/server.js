@@ -19,7 +19,8 @@ class Server {
       users: "/api/users",
       account: "/api/accounts",
       divisa: "/api/divisa",
-      transaction: '/api/transactions'
+      transaction: '/api/transactions',
+      favorite: '/api/favorites'
     };
     //conectar DB
     this.conectarDB();
@@ -57,6 +58,8 @@ class Server {
     this.app.use(this.paths.account, require("../routes/account"));
     this.app.use(this.paths.divisa, require("../routes/divisa"));
     this.app.use(this.paths.transaction, require('../routes/transactions'));
+
+    this.app.use(this.paths.favorite, require("../routes/favorite"));
   }
   listen() {
     this.app.listen(this.port, () => {
