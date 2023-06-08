@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
-const { validarJWT } = require('../middlewares/validar-jwtAdmin');
+const { validarjwtAdmin } = require('../middlewares/validar-jwtAdmin');
 const { crearCuentaBancaria, editarSaldoCuenta, eliminarCuenta, mostrarCuentasActivas, obtenerCuentasConMasTransferencias} = require('../controllers/account');
 const { validarUsuarioExistente, validarIdPropietarioValido, validarPropietarioExistente, validarNumeroCuentaUnico } = require('../helpers/db-validatorsAccount');
 const { validarEdicionSaldo } = require('../middlewares/validar-account');
@@ -15,7 +15,7 @@ router.get('/mostrarCuentasConMasTransferencias',
 obtenerCuentasConMasTransferencias);
 
 router.post('/crearcuenta',[
-    validarJWT,
+    validarjwtAdmin,
     tieneRole("ADMIN_USER"),
     check("propietario", "El propietario es obligatorio").not().isEmpty(),
     check("tipoCuenta","El tipo de cuenta es obligatorio").not().isEmpty(),
@@ -25,14 +25,14 @@ router.post('/crearcuenta',[
 ], crearCuentaBancaria);
 
 router.put('/editar/:id',[
-    validarJWT,
+    validarjwtAdmin,
     tieneRole("ADMIN_USER"),
     check("saldo", "El saldo es obligatorio").not().isEmpty(),
     validarEdicionSaldo
 ],editarSaldoCuenta);
 
 router.delete('/eliminar/:id',[
-    validarJWT,
+    validarjwtAdmin,
     tieneRole("ADMIN_USER")
     
 ],eliminarCuenta)
