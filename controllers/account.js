@@ -176,11 +176,7 @@ module.exports = {
   editarSaldoCuenta,
   eliminarCuenta,
   mostrarCuentasActivas,
-<<<<<<< HEAD
-  
-=======
   obtenerCuentasConMasTransferencias
->>>>>>> 52daf9c939c891089bf7557271f6ac72138f8631
 };
 
 

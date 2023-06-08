@@ -22,7 +22,8 @@ const UsuarioSchema = Schema({
     },
     cuentas: [{                                // Agregué el campo 'cuentas' como un arreglo
         type: Schema.Types.ObjectId,
-        ref: 'Cuenta'
+        ref: 'Cuenta',
+        default: []
     }],
     DPI: {
         type: Number,
@@ -45,7 +46,8 @@ const UsuarioSchema = Schema({
         required: [true, 'sus ingresos son obligatorios' ]
     },
     img: {
-        type: String
+        type: String,
+        default: null
     },
     rol: {
         type: String,

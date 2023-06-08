@@ -56,7 +56,7 @@ class Server {
     this.app.use(this.paths.users, require("../routes/user"));
     this.app.use(this.paths.account, require("../routes/account"));
     this.app.use(this.paths.divisa, require("../routes/divisa"));
-    this.app.use(this.paths.transaction, require('../routes/transactions'))
+    this.app.use(this.paths.transaction, require('../routes/transactions'));
   }
   listen() {
     this.app.listen(this.port, () => {

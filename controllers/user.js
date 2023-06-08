@@ -3,19 +3,20 @@ const bcrypt = require('bcryptjs');
 //Importación del modelo
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
-const user = require('../models/user');
+
 
 
 const postUser = async (req = request, res = response) => {
     //Desestructuración
-    const { nombre, correo, nickname, password, cuentas, DPI, direccion, celular, trabajo, ingresos } = req.body;
-
+    const cuentas = [];
+    const { nombre, correo, nickname, password,  DPI, direccion, celular, trabajo, ingresos } = req.body;
+    
     const data = {
         nombre,
         correo,
         nickname,
         password,
-        cuentas: [...req.body.cuentas],
+        cuentas: [...cuentas],
         DPI,
         direccion,
         celular,
@@ -105,7 +106,7 @@ const putUser = async (req = request, res = response) => {
 
     //Req.params sirve para traer parametros de las rutas
     const { id } = req.params;
-    const { _id, img, estado, DPI, password, ...resto } = req.body;
+    const { _id, img, estado, password,DPI, ingresos,trabajo,nombre, direccion,cuentas, ...resto } = req.body;
 
     //const usuarioActual = req.usuario; // usuario que hace la petición
     const usuarioDB = await User.findById(id); // usuario que se desea modificar
@@ -117,13 +118,12 @@ const putUser = async (req = request, res = response) => {
    } */
 
     //Si la password existe o viene en el req.body, la encripta
-    if (resto.password) {
+   /* if (resto.password) {
         //Encriptar password
         const salt = bcrypt.genSaltSync();
         resto.password = bcrypt.hashSync(resto.password, salt);
-    }
+    }*/
     //Editar al usuario por el id
-    resto.cuentas = [...req.body.cuentas];
     const usuarioEditado = await User.findByIdAndUpdate(id, resto);
 
     res.json({

@@ -55,7 +55,7 @@ const getUserAdmins = async (req = request, res = response) => {
 
     res.json({
         msg: 'get Api - Controlador userAdmin',
-        listauserAdmins
+        /* listauserAdmins */
     });
 
 
@@ -85,7 +85,7 @@ const putUserAdmin = async (req = request, res = response) => {
 
          //Req.params sirve para traer parametros de las rutas
          const { id } = req.params;
-        const { _id, img, estado, google, ...resto } = req.body;
+        const { _id, img, estado, google,password, ...resto } = req.body;
     
         //const usuarioActual = req.usuario; // usuario que hace la petición
     const usuarioDB = await userAdmin.findById(id); // usuario que se desea modificar
@@ -97,11 +97,11 @@ const putUserAdmin = async (req = request, res = response) => {
         } */
     
          //Si la password existe o viene en el req.body, la encripta
-         if (resto.password) {
+       /*  if (resto.password) {
              //Encriptar password
              const salt = bcrypt.genSaltSync();
              resto.password = bcrypt.hashSync(resto.password, salt);
-        }
+        } */
     
          //Editar al usuario por el id
          const usuarioEditado = await userAdmin.findByIdAndUpdate(id, resto);
@@ -114,8 +114,6 @@ const putUserAdmin = async (req = request, res = response) => {
 
 const deleteUserAdmin = async (req = request, res = response) => {
     const { id } = req.params;
-
-    const userAdminActual = req.userAdmin; 
     const userAdminDB = await userAdmin.findById(id);
 
    /* if (userAdminActual.rol === 'ADMIN_USER' && userAdminDB.rol === 'ADMIN_USER') {
