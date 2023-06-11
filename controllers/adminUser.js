@@ -55,7 +55,7 @@ const getUserAdmins = async (req = request, res = response) => {
 
     res.json({
         msg: 'get Api - Controlador userAdmin',
-        /* listauserAdmins */
+        listauserAdmins 
     });
 
 

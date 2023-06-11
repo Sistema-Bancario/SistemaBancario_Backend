@@ -81,10 +81,6 @@ const postCuentaFavorita = async (req, res) => {
 };
 
 
-
-
-
-
 module.exports = {
     mostrarCuentasFavoritas,
     postCuentaFavorita
