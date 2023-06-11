@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "c71e477b-38a5-4410-8430-b9d92a7dc36b",
-		"name": "sis.Bancario Copy 2",
+		"_postman_id": "14cdfcfa-8410-4336-9450-793633ad90f7",
+		"name": "sis.Bancario Copy 3",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -10,21 +10,9 @@
 			"item": [
 				{
 					"name": "mostrarAdmin",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nombre\":\"Carlos\",\r\n    \"correo\":\"ADMINB@gmail.com\",\r\n    \"password\":\"ADMINB\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "localhost:8080/api/adminUsers/mostrarAdmins",
 							"host": [
@@ -67,7 +55,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"correo\": \"admin@gmail.com\",\r\n    \"password\": \"ADMINB\"\r\n}\r\n",
+							"raw": "{\n    \"correo\": \"admin@gmail.com\",\n    \"password\": \"ADMINB\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -93,7 +81,13 @@
 					"name": "agregarAdmin",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDg1ZTRkOWU3ODBhNWUxNzYxNDM1MDIiLCJpYXQiOjE2ODY0OTY0OTMsImV4cCI6MTY4NjUxNDQ5M30.7VqTkcB6OJoWll2tABKTP8i7HDjkU7F4alD4YmLgoHU",
+								"type": "default"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"nombre\":\"Carlos\",\r\n    \"correo\":\"ADMINB@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
@@ -181,13 +175,12 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDdiYjdmMTBjZjUzMDMyNmU0MGZmZDciLCJpYXQiOjE2ODU4Mjk3NjUsImV4cCI6MTY4NTg0Nzc2NX0.-JK-JBprqIfr4DVeqMRAia74b0NPSoNmfGICqa9GBjA",
-								"type": "text"
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDg1ZTRkOWU3ODBhNWUxNzYxNDM1MDIiLCJpYXQiOjE2ODY0OTY0OTMsImV4cCI6MTY4NjUxNDQ5M30.7VqTkcB6OJoWll2tABKTP8i7HDjkU7F4alD4YmLgoHU"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\":\"Jose\",\r\n    \"correo\":\"jose@gmail.com\",\r\n    \"nickname\":\"josias\",\r\n    \"password\":\"123456\",\r\n    \"DPI\":1234567890101,\r\n    \"direccion\":\"4ta calle zona 23\",\r\n    \"celular\":1128883,\r\n    \"trabajo\":\"guardian\",\r\n    \"ingresos\":3000,\r\n    \"cuentas\":[\r\n        \r\n    ]\r\n    \r\n}",
+							"raw": "{\n    \"nombre\":\"Jose\",\n    \"correo\":\"jose11@gmail.com\",\n    \"nickname\":\"josias1\",\n    \"password\":\"123456\",\n    \"DPI\":1234567890101,\n    \"direccion\":\"4ta calle zona 23\",\n    \"celular\":1128883,\n    \"trabajo\":\"guardian\",\n    \"ingresos\":3000,\n    \"cuentas\":[\n        \n    ],\n    \"img\": \"https://assets-es.imgfoot.com/media/cache/1200x1200/lionel-messi-psg-2223-1.jpg\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -216,13 +209,12 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDdiYjdmMTBjZjUzMDMyNmU0MGZmZDciLCJpYXQiOjE2ODU4Mjk3NjUsImV4cCI6MTY4NTg0Nzc2NX0.-JK-JBprqIfr4DVeqMRAia74b0NPSoNmfGICqa9GBjA",
-								"type": "text"
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDg1ZTRkOWU3ODBhNWUxNzYxNDM1MDIiLCJpYXQiOjE2ODY0OTY0OTMsImV4cCI6MTY4NjUxNDQ5M30.7VqTkcB6OJoWll2tABKTP8i7HDjkU7F4alD4YmLgoHU"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\":\"Camavinga\",\r\n    \"correo\":\"pedri@gmail.com\",\r\n    \"nickname\":\"chepe\",\r\n    \"password\":\"123456\",\r\n    \"DPI\":1234567898931,\r\n    \"direccion\":\"4ta calle zona 23\",\r\n    \"celular\":89347,\r\n    \"trabajo\":\"guardian\",\r\n    \"ingresos\":3000,\r\n    \"cuentas\":[\r\n        \r\n    ]\r\n    \r\n}",
+							"raw": "{\n    \"nombre\":\"Camavinga\",\n    \"correo\":\"pedri@gmail.com\",\n    \"nickname\":\"chepe\",\n    \"password\":\"123456\",\n    \"DPI\":1234567898931,\n    \"direccion\":\"4ta calle zona 23\",\n    \"celular\":89347,\n    \"trabajo\":\"guardian\",\n    \"ingresos\":3000,\n    \"cuentas\":[\n        \n    ],\n    \"img\": \"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/eduardo-camavinga-of-real-madrid-cf-looks-on-during-the-news-photo-1681463768.jpg?crop=0.672xw:1.00xh;0.200xw,0&resize=1200:*\"\n    \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -251,7 +243,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"correo\": \"jose@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"correo\": \"jose11@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -358,13 +350,12 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDdiYjdmMTBjZjUzMDMyNmU0MGZmZDciLCJpYXQiOjE2ODU4Mjk3NjUsImV4cCI6MTY4NTg0Nzc2NX0.-JK-JBprqIfr4DVeqMRAia74b0NPSoNmfGICqa9GBjA",
-								"type": "text"
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDg1ZTRkOWU3ODBhNWUxNzYxNDM1MDIiLCJpYXQiOjE2ODY0OTY0OTMsImV4cCI6MTY4NjUxNDQ5M30.7VqTkcB6OJoWll2tABKTP8i7HDjkU7F4alD4YmLgoHU"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"propietario\":\"647bb89736523a489e759bb0\",\r\n    \"tipoCuenta\":\"ahorro\",\r\n    \"saldo\": 400\r\n}",
+							"raw": "{\n    \"propietario\":\"6485e535fc2db88ddcf98afe\",\n    \"tipoCuenta\":\"ahorro\",\n    \"saldo\": 2000\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -393,13 +384,12 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDdiYjdmMTBjZjUzMDMyNmU0MGZmZDciLCJpYXQiOjE2ODU4Mjk3NjUsImV4cCI6MTY4NTg0Nzc2NX0.-JK-JBprqIfr4DVeqMRAia74b0NPSoNmfGICqa9GBjA",
-								"type": "text"
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDg1ZTRkOWU3ODBhNWUxNzYxNDM1MDIiLCJpYXQiOjE2ODY0OTY2NTcsImV4cCI6MTY4NjUxNDY1N30.M61l3nuLTvh7Km5NWTsJt_iPqsG-euUcgT1WLBUJUHo"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"propietario\":\"647bb8a436523a489e759bb6\",\r\n    \"tipoCuenta\":\"ahorro\",\r\n    \"saldo\": 40000\r\n}",
+							"raw": "{\r\n    \"propietario\":\"6485e549fc2db88ddcf98b03\",\r\n    \"tipoCuenta\":\"ahorro\",\r\n    \"saldo\": 40000\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -428,8 +418,7 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDc2YjQ3OWY2YzFjYTJmNTNlMGQ5MjQiLCJpYXQiOjE2ODU1MDEwNzMsImV4cCI6MTY4NTUxOTA3M30.awEiaiqr29duwjRvhmzjOfYVTcTvUhQL3-qm__2mHFs",
-								"type": "text"
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDc2YjQ3OWY2YzFjYTJmNTNlMGQ5MjQiLCJpYXQiOjE2ODU1MDEwNzMsImV4cCI6MTY4NTUxOTA3M30.awEiaiqr29duwjRvhmzjOfYVTcTvUhQL3-qm__2mHFs"
 							}
 						],
 						"body": {
@@ -511,7 +500,6 @@
 							{
 								"key": "x-token",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDdiYjg5NzM2NTIzYTQ4OWU3NTliYjAiLCJpYXQiOjE2ODU4MzA4NTUsImV4cCI6MTY4NTg0ODg1NX0.3ABXMDdIsdVNx7zyFv3NRoSOxg1cUz93m0D9c3Jx7g4",
-								"type": "text",
 								"disabled": true
 							}
 						],
@@ -597,13 +585,12 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDdkNGRiNWEzNThiZWJhZjZjNWI1ZTQiLCJpYXQiOjE2ODYwOTU0MzksImV4cCI6MTY4NjExMzQzOX0.PGReZoesOJ9GEoGUGTYfVpXdxmEAVxoOjyrnRXlFDo4",
-								"type": "default"
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDg1ZTUzNWZjMmRiODhkZGNmOThhZmUiLCJpYXQiOjE2ODY0OTY3ODAsImV4cCI6MTY4NjUxNDc4MH0.Z4jkhjLdul2PL0qLKyfS5PFcUCmMwGfqjcw-cEgDkyE"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"numeroCuenta\": \"bb320360-515c-47bf-b064-2cf74a46f05d\",\r\n  \"tipoCuenta\": \"monetaria\",\r\n  \"nickname\": \"MiCuentaFavorita\"\r\n}\r\n",
+							"raw": "{\n  \"noCuentaUsuario\": \"f4bb922e-d8c8-4c9c-979c-ba29d5753877\",\n  \"nickname\":\"El camavinga\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -611,7 +598,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/favorites/crearFavorito",
+							"raw": "localhost:8080/api/favorites/agregarContacto/6485e5aefc2db88ddcf98b15",
 							"host": [
 								"localhost"
 							],
@@ -619,7 +606,8 @@
 							"path": [
 								"api",
 								"favorites",
-								"crearFavorito"
+								"agregarContacto",
+								"6485e5aefc2db88ddcf98b15"
 							]
 						}
 					},
@@ -631,7 +619,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/favorites/mostrar",
+							"raw": "localhost:8080/api/favorites/mostrar/f4bb922e-d8c8-4c9c-979c-ba29d5753877",
 							"host": [
 								"localhost"
 							],
@@ -639,7 +627,8 @@
 							"path": [
 								"api",
 								"favorites",
-								"mostrar"
+								"mostrar",
+								"f4bb922e-d8c8-4c9c-979c-ba29d5753877"
 							]
 						}
 					},

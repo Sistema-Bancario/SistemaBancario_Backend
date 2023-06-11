@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 const postUser = async (req = request, res = response) => {
     //Desestructuración
     const cuentas = [];
-    const { nombre, correo, nickname, password,  DPI, direccion, celular, trabajo, ingresos } = req.body;
+    const { nombre, correo, nickname, password,  DPI,img, direccion, celular, trabajo, ingresos } = req.body;
     
     const data = {
         nombre,
