@@ -40,7 +40,12 @@ const UsuarioSchema = Schema({
         required: [true, 'sus ingresos son obligatorios' ]
     },
     img: {
+<<<<<<< Updated upstream
         type: String
+=======
+        type: String,
+        default: ""
+>>>>>>> Stashed changes
     },
     rol: {
         type: String,

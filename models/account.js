@@ -23,7 +23,23 @@ const CuentaSchema = Schema({
     estado: {
         type: Boolean,
         default: true
+<<<<<<< Updated upstream
     }
+=======
+    },
+    transferencias: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Transferencia'
+      }],
+    cantidadTransferencias: {
+        type: Number,
+        default: 0
+    },
+    favoritos: [{ 
+        type: String, 
+        ref: 'Favorito' 
+    }],
+>>>>>>> Stashed changes
 });
 
 module.exports = model('Cuenta', CuentaSchema);

@@ -2,8 +2,13 @@ const { response, request } = require('express');
 const bcrypt = require('bcryptjs');
 const Cuenta = require('../models/account')
 const { v4: uuidv4 } = require('uuid');
+<<<<<<< Updated upstream
 
 
+=======
+const Usuario = require('../models/user');
+const Favorito = require('../models/favorite');
+>>>>>>> Stashed changes
 
 const mostrarCuentasActivas = async (req, res) => {
   try {
@@ -22,6 +27,27 @@ const mostrarCuentasActivas = async (req, res) => {
   }
 };
 
+<<<<<<< Updated upstream
+=======
+const misCuentas = async (req, res) => {
+  const id = req.usuario.id;
+  try {
+    // Buscar todas las cuentas con estado activo
+    const cuentasActivas = await Cuenta.find({propietario: id});
+
+    res.json({
+      cuentas: cuentasActivas
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: 'Error al obtener las cuentas bancarias activas'
+    });
+  }
+};
+
+const obtenerCuentasConMasTransferencias = async (req, res) => {
+>>>>>>> Stashed changes
 
 
 const crearCuentaBancaria = async (req, res) => {
@@ -44,6 +70,14 @@ const crearCuentaBancaria = async (req, res) => {
     });
     // Guardar la cuenta en la base de datos
     await nuevaCuenta.save();
+<<<<<<< Updated upstream
+=======
+    const nuevoFavorito = new Favorito({numeroCuenta: numeroCuenta, tipoCuenta: tipoCuenta});
+    await nuevoFavorito.save();
+    // Agregar el id de la cuenta al nuevo propietario
+    propietarioExistente.cuentas.push(nuevaCuenta._id);
+    await propietarioExistente.save();
+>>>>>>> Stashed changes
 
     res.json({
       message: 'Cuenta bancaria creada exitosamente',
@@ -130,7 +164,13 @@ module.exports = {
   crearCuentaBancaria,
   editarSaldoCuenta,
   eliminarCuenta,
+<<<<<<< Updated upstream
   mostrarCuentasActivas
+=======
+  misCuentas,
+  mostrarCuentasActivas,
+  obtenerCuentasConMasTransferencias
+>>>>>>> Stashed changes
 };
 
 

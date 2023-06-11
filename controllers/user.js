@@ -7,8 +7,28 @@ const jwt = require('jsonwebtoken');
 
 const postUser = async (req = request, res = response) => {
     //Desestructuración
+<<<<<<< Updated upstream
     const { nombre, correo, nickname, password, DPI, direccion, celular, trabajo, ingresos } = req.body;
     const userGuardadoDB = new User({ nombre, correo, nickname, password, DPI, direccion, celular, trabajo, ingresos});
+=======
+    const cuentas = [];
+    const { nombre, correo, nickname, password,  DPI, direccion, celular,img, trabajo, ingresos } = req.body;
+    
+    const data = {
+        nombre,
+        correo,
+        nickname,
+        password,
+        cuentas: [...cuentas],
+        DPI,
+        img,
+        direccion,
+        celular,
+        trabajo,
+        ingresos
+    }
+    const userGuardadoDB = new User(data);
+>>>>>>> Stashed changes
 
     //Encriptar password
     const salt = bcrypt.genSaltSync();
@@ -117,6 +137,34 @@ const putUser = async (req = request, res = response) => {
          });
      }
 
+const putMiUser = async (req = request, res = response) => {
+    //Req.params sirve para traer parametros de las rutas
+    const id = req.usuario.id;
+    const {
+      correo,
+      password,
+      img,
+      celular,
+    } = req.body;
+    const usuarioDB = await User.findById(id); // usuario que se desea modificar
+    if(usuarioDB){
+        const salt = bcrypt.genSaltSync();
+        const passwordCript = bcrypt.hashSync(password, salt);
+    const usuarioEditado = await User.findByIdAndUpdate(id, {correo: correo,
+        password: passwordCript,
+        img: img,
+        celular: celular,});
+        
+    res.json({
+        msg: 'PUT editar user',
+        usuarioEditado
+    });
+}else{
+    res.json({error: 'No se encontro el usuario'});
+}
+}
+
+
 const deleteUser = async (req = request, res = response) => {
     const { id } = req.params;
 
@@ -173,13 +221,87 @@ const deleteUser = async (req = request, res = response) => {
 
 } */
 
+<<<<<<< Updated upstream
+=======
+const obtenerCuentasUsuario = async (req, res) => {
+    try {
+      const token = req.header('x-token');
+      const { uid } = jwt.verify(token, process.env.SECRET_KEY_FOR_TOKEN);
+      const usuario = await User.findById(uid).populate('cuentas');
+  
+      if (!usuario) {
+        return res.status(404).json({
+          message: 'Usuario no encontrado'
+        });
+      }
+  
+     //Obtener la ingo
+      const cuentas = usuario.cuentas.map((cuenta) => ({
+        numeroCuenta: cuenta.numeroCuenta,
+        saldo: cuenta.saldo,
+        tipoCuenta: cuenta.tipoCuenta
+      }));
+  
+      res.json({
+        usuarioIUD: usuario._id,
+        nickname: usuario.nickname,
+        cuentas
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        message: 'Error al obtener las cuentas del usuario'
+      });
+    }
+  };
+  
+  const getMiUser = async (req = request, res = response) => {
+    //Req.params sirve para traer parametros de las rutas
+    const id = req.usuario.id;
+    const usuarioDB = await User.findById(id); // usuario que se desea modificar
+    if(usuarioDB){
+        res.json({
+            usuarioDB
+        });
+    }else{
+        res.json({error: 'No se encontro el usuario'});
+    }
+}
+    const deleteMiPerfil = async (req = request, res = response) => {
+        //Req.params sirve para traer parametros de las rutas
+        const id = req.usuario.id;
+        const usuarioEliminado = await User.findByIdAndDelete(id); // usuario que se desea modificar
+        if(usuarioEliminado){
+            res.json({
+                usuarioEliminado
+            });
+        }else{
+            res.json({error: 'No se encontro el usuario'});
+        }
+}
+
+  
+  
+  
+
+
+
+>>>>>>> Stashed changes
 module.exports = {
     getUsers,
     putUser,
     deleteUser,
     postUser,
     getUsersById,
+<<<<<<< Updated upstream
     defaultUser
+=======
+    defaultUser,
+    putMiUser,
+    obtenerCuentasUsuario,
+    getMiUser,
+    deleteMiPerfil
+>>>>>>> Stashed changes
     // eliminarUserByToken,
     //getUserPorToken,
 }
