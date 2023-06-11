@@ -8,6 +8,11 @@ const jwt = require('jsonwebtoken');
 
 const postUser = async (req = request, res = response) => {
     //Desestructuración
+
+    const { nombre, correo, nickname, password, DPI, direccion, celular, trabajo, ingresos } = req.body;
+    const userGuardadoDB = new User({ nombre, correo, nickname, password, DPI, direccion, celular, trabajo, ingresos});
+    const cuentas = [];
+    const { nombre, correo, nickname, password,  DPI, direccion, celular,img, trabajo, ingresos } = req.body;
     const cuentas = [];
     const { nombre, correo, nickname, password,  DPI, direccion, celular, trabajo, ingresos } = req.body;
     
@@ -18,13 +23,13 @@ const postUser = async (req = request, res = response) => {
         password,
         cuentas: [...cuentas],
         DPI,
+        img,
         direccion,
         celular,
         trabajo,
         ingresos
     }
     const userGuardadoDB = new User(data);
-
     //Encriptar password
     const salt = bcrypt.genSaltSync();
     userGuardadoDB.password = bcrypt.hashSync(password, salt);
@@ -132,6 +137,34 @@ const putUser = async (req = request, res = response) => {
     });
 }
 
+const putMiUser = async (req = request, res = response) => {
+    //Req.params sirve para traer parametros de las rutas
+    const id = req.usuario.id;
+    const {
+      correo,
+      password,
+      img,
+      celular,
+    } = req.body;
+    const usuarioDB = await User.findById(id); // usuario que se desea modificar
+    if(usuarioDB){
+        const salt = bcrypt.genSaltSync();
+        const passwordCript = bcrypt.hashSync(password, salt);
+    const usuarioEditado = await User.findByIdAndUpdate(id, {correo: correo,
+        password: passwordCript,
+        img: img,
+        celular: celular,});
+        
+    res.json({
+        msg: 'PUT editar user',
+        usuarioEditado
+    });
+}else{
+    res.json({error: 'No se encontro el usuario'});
+}
+}
+
+
 const deleteUser = async (req = request, res = response) => {
     const { id } = req.params;
 
@@ -220,10 +253,30 @@ const obtenerCuentasUsuario = async (req, res) => {
     }
   };
   
-  
-  
-  
-
+  const getMiUser = async (req = request, res = response) => {
+    //Req.params sirve para traer parametros de las rutas
+    const id = req.usuario.id;
+    const usuarioDB = await User.findById(id); // usuario que se desea modificar
+    if(usuarioDB){
+        res.json({
+            usuarioDB
+        });
+    }else{
+        res.json({error: 'No se encontro el usuario'});
+    }
+}
+    const deleteMiPerfil = async (req = request, res = response) => {
+        //Req.params sirve para traer parametros de las rutas
+        const id = req.usuario.id;
+        const usuarioEliminado = await User.findByIdAndDelete(id); // usuario que se desea modificar
+        if(usuarioEliminado){
+            res.json({
+                usuarioEliminado
+            });
+        }else{
+            res.json({error: 'No se encontro el usuario'});
+        }
+}
 
 
 module.exports = {
@@ -233,7 +286,10 @@ module.exports = {
     postUser,
     getUsersById,
     defaultUser,
-    obtenerCuentasUsuario
+    putMiUser,
+    obtenerCuentasUsuario,
+    getMiUser,
+    deleteMiPerfil
     // eliminarUserByToken,
     //getUserPorToken,
 }

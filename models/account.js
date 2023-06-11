@@ -32,6 +32,10 @@ const CuentaSchema = Schema({
         type: Number,
         default: 0
     },
+    favoritos: [{ 
+        type: String, 
+        ref: 'Favorito' 
+    }],
 });
 
 module.exports = model('Cuenta', CuentaSchema);

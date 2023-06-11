@@ -1,6 +1,21 @@
 //Importaciones
 const { Router } = require('express');
 const { check } = require('express-validator');
+
+const {  getUsers,putUser,deleteUser,postUser, getUsersById } = require('../controllers/user');
+const {  emailExiste, existeUsuarioPorId } = require('../helpers/db-validators');
+const { validarCampos } = require('../middlewares/validar-campos');
+//const { validarJWT } = require('../middlewares/validar-jwt');
+//const { tieneRole } = require('../middlewares/validar-role-admin');
+const {  getUsers,putUser,deleteUser,postUser, getUsersById, obtenerCuentasUsuario, putMiUser, getMiUser, deleteMiPerfil } = require('../controllers/user');
+const {  emailExiste, existeUsuarioPorId, nickUnico } = require('../helpers/db-validators');
+const { validarCampos } = require('../middlewares/validar-campos');
+
+const { validarJWT} = require('../middlewares/validar-jwt');
+const { validarjwtAdmin} = require('../middlewares/validar-jwtAdmin');
+const { esAdminRole } = require('../middlewares/validar-role-admin');
+const { tieneRole } = require('../middlewares/validar-role-admin');
+
 const {  getUsers,putUser,deleteUser,postUser, getUsersById, obtenerCuentasUsuario } = require('../controllers/user');
 const {  emailExiste, existeUsuarioPorId, nickUnico } = require('../helpers/db-validators');
 const { validarCampos } = require('../middlewares/validar-campos');
@@ -83,7 +98,22 @@ router.put('/editarUser/:id',
     putUser
   );
   
+router.put('/editarMiPerfil',[
+  validarJWT,
+  validarCampos
+], putMiUser)
 
+  
+router.delete('/eliminarMiPerfil',[
+  validarJWT,
+  validarCampos
+], deleteMiPerfil)
+
+
+router.get('/miPerfil',[
+  validarJWT,
+  validarCampos
+], getMiUser)
   
  // router.delete('/eliminarById/:token', eliminarUserByToken);
 
