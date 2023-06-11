@@ -31,5 +31,15 @@ const FavoritoSchema = Schema({
         }],
     }
 }, { timestamps: true });
+    nickname: {
+        type: String,
+        required: [true, 'El nickname es obligatorio'],
+        unique: true
+    },
+    fecha: {
+        type: Date,
+        default: Date.now
+    }
+});
 
 module.exports = model('Favorito', FavoritoSchema);

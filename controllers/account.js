@@ -2,13 +2,11 @@ const { response, request } = require('express');
 const bcrypt = require('bcryptjs');
 const Cuenta = require('../models/account')
 const { v4: uuidv4 } = require('uuid');
-<<<<<<< Updated upstream
 
+const Usuario = require('../models/user');
 
-=======
 const Usuario = require('../models/user');
 const Favorito = require('../models/favorite');
->>>>>>> Stashed changes
 
 const mostrarCuentasActivas = async (req, res) => {
   try {
@@ -27,8 +25,6 @@ const mostrarCuentasActivas = async (req, res) => {
   }
 };
 
-<<<<<<< Updated upstream
-=======
 const misCuentas = async (req, res) => {
   const id = req.usuario.id;
   try {
@@ -47,8 +43,24 @@ const misCuentas = async (req, res) => {
 };
 
 const obtenerCuentasConMasTransferencias = async (req, res) => {
->>>>>>> Stashed changes
+  try {
+    const orden = req.query.odren || 'asc';
+    const cuentas = await Cuenta.find()
+    .sort({ cantidadTransferencias: orden === 'desc' ? -1 : 1 })
+    .populate('propietario', 'nombre correo')
+    .exec();
 
+    res.json({
+      cuentas
+    })
+   
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: 'Error al obtener las cuentas bancarias activas'
+    });
+  }
+};
 
 const crearCuentaBancaria = async (req, res) => {
   try {
@@ -61,6 +73,24 @@ const crearCuentaBancaria = async (req, res) => {
       throw new Error('No se pudo generar el número de cuenta');
     }
 
+    // Verificar si el propietario existe
+    const propietarioExistente = await Usuario.findById(propietario);
+
+    if (!propietarioExistente) {
+      return res.status(404).json({
+        message: 'El propietario de la cuenta no existe'
+      });
+    }
+
+    // Verificar si la cuenta de origen ya existe
+    const cuentaExistente = await Cuenta.findOne({ numeroCuenta });
+
+    if (cuentaExistente) {
+      return res.status(400).json({
+        message: 'La cuenta de origen ya existe'
+      });
+    }
+
     // Crear la cuenta bancaria
     const nuevaCuenta = new Cuenta({
       propietario,
@@ -68,16 +98,18 @@ const crearCuentaBancaria = async (req, res) => {
       tipoCuenta,
       saldo
     });
+
     // Guardar la cuenta en la base de datos
     await nuevaCuenta.save();
-<<<<<<< Updated upstream
-=======
     const nuevoFavorito = new Favorito({numeroCuenta: numeroCuenta, tipoCuenta: tipoCuenta});
     await nuevoFavorito.save();
     // Agregar el id de la cuenta al nuevo propietario
     propietarioExistente.cuentas.push(nuevaCuenta._id);
     await propietarioExistente.save();
->>>>>>> Stashed changes
+
+    // Agregar el id de la cuenta al nuevo propietario
+    propietarioExistente.cuentas.push(nuevaCuenta._id);
+    await propietarioExistente.save();
 
     res.json({
       message: 'Cuenta bancaria creada exitosamente',
@@ -158,19 +190,12 @@ const eliminarCuenta = async (req, res) => {
 
 
 
-
-
 module.exports = {
   crearCuentaBancaria,
   editarSaldoCuenta,
   eliminarCuenta,
-<<<<<<< Updated upstream
-  mostrarCuentasActivas
-=======
   misCuentas,
   mostrarCuentasActivas,
   obtenerCuentasConMasTransferencias
->>>>>>> Stashed changes
 };
-
 

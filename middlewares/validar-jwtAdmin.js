@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const Usuario = require('../models/adminUser');
 
-const validarJWT = async( req = request, res= response, next ) => {
+const validarjwtAdmin = async( req = request, res= response, next ) => {
 
     const token = req.header('x-token');
 
@@ -20,7 +20,7 @@ const validarJWT = async( req = request, res= response, next ) => {
         //Verificar si el uid del usuario no existe
         if ( !usuario ) {
             return res.status(401).json({
-                msg: 'Token no valido - usuario no existe en DB fisicamente'
+                msg: 'Token no valido - usuario no existe en DB fisicamente / no es admin'
             })
         }
         //Verufucar su ek uid tiene estado true
@@ -42,5 +42,5 @@ const validarJWT = async( req = request, res= response, next ) => {
 }
 
 module.exports = {
-    validarJWT
+    validarjwtAdmin
 }

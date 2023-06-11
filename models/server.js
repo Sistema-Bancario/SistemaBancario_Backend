@@ -1,7 +1,9 @@
 const { dbConection } = require("../database/config");
 const express = require("express");
 const cors = require("cors");
-//const {defaulUser defaultAdmin} = require("../controllers/usuario");
+const { defaulUser} = require("../controllers/user");
+const { defaultAdmin} = require("../controllers/adminUser");
+
 //const {crearRoles} = require("../middlewares/roles")
 
 class Server {
@@ -16,7 +18,9 @@ class Server {
       adminUsers: "/api/adminUsers",
       users: "/api/users",
       account: "/api/accounts",
-      divisa: "/api/divisa"
+      divisa: "/api/divisa",
+      transaction: '/api/transactions',
+      favorite: '/api/favorites'
     };
     //conectar DB
     this.conectarDB();
@@ -27,10 +31,9 @@ class Server {
     //rutas de la app
     this.routes();
 
-    //  defaultAdmin();
-    //defaulUser();
-    //crearRoles();
-    //defaultDev();
+   // defaultAdmin();
+    defaultAdmin();
+    
   }
   middlewares() {
     // CORS
@@ -54,6 +57,9 @@ class Server {
     this.app.use(this.paths.users, require("../routes/user"));
     this.app.use(this.paths.account, require("../routes/account"));
     this.app.use(this.paths.divisa, require("../routes/divisa"));
+    this.app.use(this.paths.transaction, require('../routes/transactions'));
+
+    this.app.use(this.paths.favorite, require("../routes/favorite"));
   }
   listen() {
     this.app.listen(this.port, () => {

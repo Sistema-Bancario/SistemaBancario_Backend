@@ -25,11 +25,21 @@ const existeUsuarioPorId = async (id) => {
   }
 };
 
+const nickUnico = async (nickname = "") => {
+//Verificar si el ID existe
+const existeNick = await Usuario.findOne({nickname});
+
+if (existeNick) {
+  throw new Error(`El nickname ${nickname} ya existe, solo ponete otro :b`);
+}
+}
+
 
 
 module.exports = {
   
   emailExiste,
-  existeUsuarioPorId
+  existeUsuarioPorId,
+  nickUnico
   
 };

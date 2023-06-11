@@ -9,7 +9,7 @@ const { getUserAdmins,
      } = require('../controllers/adminUser');
 const {  emailExiste, existeUsuarioPorId } = require('../helpers/db-validators');
 const { validarCampos } = require('../middlewares/validar-campos');
-const { validarJWT } = require('../middlewares/validar-jwtAdmin');
+const {  validarjwtAdmin } = require('../middlewares/validar-jwtAdmin');
 const { tieneRole } = require('../middlewares/validar-role-admin');
 
 
@@ -29,7 +29,8 @@ router.get('/mostrarAdmin/:id',[
 router.post(
   "/agregarAdmin",
   [
-    
+    validarjwtAdmin,
+    tieneRole("ADMIN_USER"),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check("password", "El password debe de ser más de 5 digitos").isLength({
       min: 5,
@@ -50,9 +51,8 @@ router.put('/editarAdmin/:id', [
 
 
 router.delete('/eliminarAdmin/:id', [
-   // validarJWT,
-    //esAdminRole,
-   // tieneRole('ADMIN_ROLE'),
+    validarjwtAdmin,
+   tieneRole('ADMIN_ROLE'),
     check('id', 'No es un ID válido').isMongoId(),
     check('id').custom( existeUsuarioPorId ),
    // validarCampos

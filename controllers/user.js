@@ -5,14 +5,16 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 
 
+
 const postUser = async (req = request, res = response) => {
     //Desestructuración
-<<<<<<< Updated upstream
+
     const { nombre, correo, nickname, password, DPI, direccion, celular, trabajo, ingresos } = req.body;
     const userGuardadoDB = new User({ nombre, correo, nickname, password, DPI, direccion, celular, trabajo, ingresos});
-=======
     const cuentas = [];
     const { nombre, correo, nickname, password,  DPI, direccion, celular,img, trabajo, ingresos } = req.body;
+    const cuentas = [];
+    const { nombre, correo, nickname, password,  DPI, direccion, celular, trabajo, ingresos } = req.body;
     
     const data = {
         nombre,
@@ -28,8 +30,6 @@ const postUser = async (req = request, res = response) => {
         ingresos
     }
     const userGuardadoDB = new User(data);
->>>>>>> Stashed changes
-
     //Encriptar password
     const salt = bcrypt.genSaltSync();
     userGuardadoDB.password = bcrypt.hashSync(password, salt);
@@ -49,8 +49,8 @@ const defaultUser = async (req, res) => {
         user.nombre = "Jorge";
         user.nickname = "George";
         user.DPI = "1234567890101";
-        user.ingresos="4500";
-        user.trabajo= "Cajero en La Torre";
+        user.ingresos = "4500";
+        user.trabajo = "Cajero en La Torre";
         user.password = "123456";
         user.direccion = "4ta calle 10-83 zona 3";
         user.correo = "jorge@gmail.com";
@@ -88,7 +88,7 @@ const getUsers = async (req = request, res = response) => {
 const getUsersById = async (req = request, res = response) => {
 
     //condiciones del get
-   // const { token } = req.params;
+    // const { token } = req.params;
     //const { uid } = jwt.verify(token, process.env.SECRET_KEY_FOR_TOKEN);
     const { id } = req.params;
     try {
@@ -109,33 +109,33 @@ const getUsersById = async (req = request, res = response) => {
 };
 const putUser = async (req = request, res = response) => {
 
-         //Req.params sirve para traer parametros de las rutas
-         const { id } = req.params;
-        const { _id, img, estado, DPI,password, ...resto } = req.body;
-    
-        //const usuarioActual = req.usuario; // usuario que hace la petición
+    //Req.params sirve para traer parametros de las rutas
+    const { id } = req.params;
+    const { _id, img, estado, password,DPI, ingresos,trabajo,nombre, direccion,cuentas, ...resto } = req.body;
+
+    //const usuarioActual = req.usuario; // usuario que hace la petición
     const usuarioDB = await User.findById(id); // usuario que se desea modificar
-    
-         /*if (usuarioActual.rol === 'ADMIN_ROLE' && usuarioDB.rol === 'ADMIN_ROLE') {
-             return res.status(400).json({
-                 msg: 'No está autorizado para editar a un usuario con rol ADMIN_ROLE'
-             });
-        } */
-    
-         //Si la password existe o viene en el req.body, la encripta
-         if (resto.password) {
-             //Encriptar password
-             const salt = bcrypt.genSaltSync();
-             resto.password = bcrypt.hashSync(resto.password, salt);
-        }
-         //Editar al usuario por el id
-         const usuarioEditado = await User.findByIdAndUpdate(id, resto);
-    
-         res.json({
-             msg: 'PUT editar user',
-             usuarioEditado
-         });
-     }
+
+    /*if (usuarioActual.rol === 'ADMIN_ROLE' && usuarioDB.rol === 'ADMIN_ROLE') {
+        return res.status(400).json({
+            msg: 'No está autorizado para editar a un usuario con rol ADMIN_ROLE'
+        });
+   } */
+
+    //Si la password existe o viene en el req.body, la encripta
+   /* if (resto.password) {
+        //Encriptar password
+        const salt = bcrypt.genSaltSync();
+        resto.password = bcrypt.hashSync(resto.password, salt);
+    }*/
+    //Editar al usuario por el id
+    const usuarioEditado = await User.findByIdAndUpdate(id, resto);
+
+    res.json({
+        msg: 'PUT editar user',
+        usuarioEditado
+    });
+}
 
 const putMiUser = async (req = request, res = response) => {
     //Req.params sirve para traer parametros de las rutas
@@ -168,7 +168,7 @@ const putMiUser = async (req = request, res = response) => {
 const deleteUser = async (req = request, res = response) => {
     const { id } = req.params;
 
-    const UserActual = req.User; 
+    const UserActual = req.User;
     const UserDB = await User.findById(id);
     if (!UserDB) {
         return res.status(400).json({
@@ -176,11 +176,11 @@ const deleteUser = async (req = request, res = response) => {
         });
     }
 
-   /* if (UserActual.rol === 'ADMIN_USER' && UserDB.rol === 'ADMIN_USER') {
-        return res.status(400).json({
-            msg: 'No está autorizado para eliminar a un usuario con rol ADMIN_USER'
-        });
-    } */
+    /* if (UserActual.rol === 'ADMIN_USER' && UserDB.rol === 'ADMIN_USER') {
+         return res.status(400).json({
+             msg: 'No está autorizado para eliminar a un usuario con rol ADMIN_USER'
+         });
+     } */
     const UserEliminado = await User.findByIdAndDelete(id);
 
     res.json({
@@ -221,8 +221,6 @@ const deleteUser = async (req = request, res = response) => {
 
 } */
 
-<<<<<<< Updated upstream
-=======
 const obtenerCuentasUsuario = async (req, res) => {
     try {
       const token = req.header('x-token');
@@ -280,28 +278,18 @@ const obtenerCuentasUsuario = async (req, res) => {
         }
 }
 
-  
-  
-  
 
-
-
->>>>>>> Stashed changes
 module.exports = {
     getUsers,
     putUser,
     deleteUser,
     postUser,
     getUsersById,
-<<<<<<< Updated upstream
-    defaultUser
-=======
     defaultUser,
     putMiUser,
     obtenerCuentasUsuario,
     getMiUser,
     deleteMiPerfil
->>>>>>> Stashed changes
     // eliminarUserByToken,
     //getUserPorToken,
 }

@@ -18,7 +18,13 @@ const UsuarioSchema = Schema({
     password: {
         type: String,
         required: [true, 'El password es obligatorio' ]
+        
     },
+    cuentas: [{                                // Agregué el campo 'cuentas' como un arreglo
+        type: Schema.Types.ObjectId,
+        ref: 'Cuenta',
+        default: []
+    }],
     DPI: {
         type: Number,
         required: [true, 'El DPI es obligatorio' ]
@@ -39,13 +45,13 @@ const UsuarioSchema = Schema({
         type: Number,
         required: [true, 'sus ingresos son obligatorios' ]
     },
+    favoritos: [{ 
+        type: String, 
+        ref: 'Cuenta' 
+    }],
     img: {
-<<<<<<< Updated upstream
-        type: String
-=======
         type: String,
         default: ""
->>>>>>> Stashed changes
     },
     rol: {
         type: String,

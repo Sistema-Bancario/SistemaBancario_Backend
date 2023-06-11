@@ -1,13 +1,12 @@
 //Importaciones
 const { Router } = require('express');
 const { check } = require('express-validator');
-<<<<<<< Updated upstream
+
 const {  getUsers,putUser,deleteUser,postUser, getUsersById } = require('../controllers/user');
 const {  emailExiste, existeUsuarioPorId } = require('../helpers/db-validators');
 const { validarCampos } = require('../middlewares/validar-campos');
 //const { validarJWT } = require('../middlewares/validar-jwt');
 //const { tieneRole } = require('../middlewares/validar-role-admin');
-=======
 const {  getUsers,putUser,deleteUser,postUser, getUsersById, obtenerCuentasUsuario, putMiUser, getMiUser, deleteMiPerfil } = require('../controllers/user');
 const {  emailExiste, existeUsuarioPorId, nickUnico } = require('../helpers/db-validators');
 const { validarCampos } = require('../middlewares/validar-campos');
@@ -17,9 +16,23 @@ const { validarjwtAdmin} = require('../middlewares/validar-jwtAdmin');
 const { esAdminRole } = require('../middlewares/validar-role-admin');
 const { tieneRole } = require('../middlewares/validar-role-admin');
 
->>>>>>> Stashed changes
+const {  getUsers,putUser,deleteUser,postUser, getUsersById, obtenerCuentasUsuario } = require('../controllers/user');
+const {  emailExiste, existeUsuarioPorId, nickUnico } = require('../helpers/db-validators');
+const { validarCampos } = require('../middlewares/validar-campos');
+
+const { validarJWT} = require('../middlewares/validar-jwt');
+const { validarjwtAdmin} = require('../middlewares/validar-jwtAdmin');
+const { tieneRole, esAdminRole } = require('../middlewares/validar-role-admin');
+const { validarJWT } = require('../middlewares/validar-jwtAdmin');
+const { tieneRole } = require('../middlewares/validar-role-admin');
+
 
 const router = Router();
+
+router.get("/mostrarCuentasUsuario",[
+  validarJWT
+], obtenerCuentasUsuario)
+
 
 //router.get('/mostrarById/:token', getUsersById);
 router.get('/mostrarById/:id',[
@@ -32,9 +45,13 @@ router.get('/mostrar', getUsers);
 router.post(
   "/agregarUser",
   [
+    validarjwtAdmin,
+   esAdminRole,
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
+    
     check("correo", "El correo no es valido").isEmail(),
     check("nickname","se requiere un nickname").not().isEmpty(),
+    check("nickname").custom(nickUnico),
     check("password", "El password debe de ser más de 6 digitos").isLength({
       min: 6,
     }),
@@ -44,8 +61,8 @@ router.post(
     check("trabajo","se requiere un lugar de trabajo").not().isEmpty(),
     check("ingresos","se requiere los ingresos mensuales").not().isEmpty(),
     check("correo").custom(emailExiste),
-    check("rol").default("ADMIN_USER"),
-    validarCampos,
+   
+   // validarCampos
   ],
   postUser
 );
@@ -59,8 +76,8 @@ router.post(
 
 
 router.delete('/eliminarUser/:id', [
-    //validarJWT,
-   // tieneRole('ADMIN_USER'),
+    validarjwtAdmin,
+    esAdminRole,
     check('id', 'No es un ID válido').isMongoId(),
     check('id').custom( existeUsuarioPorId ),
     validarCampos
@@ -68,19 +85,14 @@ router.delete('/eliminarUser/:id', [
 
 router.put('/editarUser/:id',
     [
-      //validarJWT,
-     // tieneRole("ADMIN_USER"),
+      validarjwtAdmin,
+      esAdminRole,
     check('id', 'No es un ID válido').isMongoId(),
     check('id').custom( existeUsuarioPorId ),
     check("nickname","se requiere un nickname").not().isEmpty(),
-    check("DPI","se requiere un DPI").not().isEmpty(),
-    check('nombre', 'El nombre es obligatorio').not().isEmpty(),
-    check("direccion","se requiere una direccion").not().isEmpty(),
     check("celular","se requiere un numero de telefono").not().isEmpty(),
-    check("trabajo","se requiere un lugar de trabajo").not().isEmpty(),
-    check("ingresos","se requiere los ingresos mensuales").not().isEmpty(),
     check('correo', 'El correo no es válido').isEmail(),
-    check('password', 'El password debe tener al menos 6 caracteres').isLength({ min: 6 }),
+   
       validarCampos,
     ],
     putUser
