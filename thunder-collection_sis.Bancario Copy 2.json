@@ -1,0 +1,433 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "sis.Bancario Copy 2",
+    "dateExported": "2023-06-11T02:37:42.572Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "285e35a0-d4d6-4292-9d3e-2265c1bd2c89",
+            "name": "admin",
+            "containerId": "",
+            "created": "2023-06-10T21:46:45.838Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "b5d026b4-c841-4c2c-9c8f-03d5237ddb9a",
+            "name": "user",
+            "containerId": "",
+            "created": "2023-06-10T21:46:45.839Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "fce6975a-dd47-4ed6-a00a-b38ea5e37c12",
+            "name": "cuenta",
+            "containerId": "",
+            "created": "2023-06-10T21:46:45.840Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "7a537eef-fdc0-484e-8c9b-44f067cd6be2",
+            "name": "transaccion",
+            "containerId": "",
+            "created": "2023-06-10T21:46:45.841Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "b6cc9c03-8091-4dca-8cd3-8729dd9bb1a1",
+            "name": "Divisa",
+            "containerId": "",
+            "created": "2023-06-10T21:46:45.842Z",
+            "sortNum": 50000
+        },
+        {
+            "_id": "28b98ba4-2ddb-4a09-b936-1d53c65e62aa",
+            "name": "Favoritos",
+            "containerId": "",
+            "created": "2023-06-10T21:46:45.843Z",
+            "sortNum": 60000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "ff00d3ea-47e1-4b7a-9400-05810b9e7549",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "285e35a0-d4d6-4292-9d3e-2265c1bd2c89",
+            "name": "mostrarAdmin",
+            "url": "localhost:8080/api/adminUsers/mostrarAdmins",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-06-10T21:46:45.838Z",
+            "modified": "2023-06-10T21:46:45.838Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"nombre\":\"Carlos\",\r\n    \"correo\":\"ADMINB@gmail.com\",\r\n    \"password\":\"ADMINB\"\r\n}"
+            }
+        },
+        {
+            "_id": "4c80ff7a-9edb-4e84-8053-7f25fdddaa39",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "285e35a0-d4d6-4292-9d3e-2265c1bd2c89",
+            "name": "mostrarCuentasConMasTransferencias",
+            "url": "localhost:8080/api/accounts/mostrarCuentasConMasTransferencias",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-06-10T21:46:45.839Z",
+            "modified": "2023-06-10T21:46:45.839Z",
+            "headers": []
+        },
+        {
+            "_id": "23deddcd-9a9c-41b8-8ea8-c10e19c8113d",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "285e35a0-d4d6-4292-9d3e-2265c1bd2c89",
+            "name": "Login Admin",
+            "url": "localhost:8080/api/auth/loginAdmin",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-06-10T21:46:45.840Z",
+            "modified": "2023-06-10T21:47:05.096Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"correo\": \"admin@gmail.com\",\n    \"password\": \"ADMINB\"\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "58cc919c-27b2-41a1-93f0-5d7b47a626c4",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "285e35a0-d4d6-4292-9d3e-2265c1bd2c89",
+            "name": "agregarAdmin",
+            "url": "localhost:8080/api/adminUsers/agregarAdmin",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-06-10T21:46:45.841Z",
+            "modified": "2023-06-10T21:46:45.841Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"nombre\":\"Carlos\",\r\n    \"correo\":\"ADMINB@gmail.com\",\r\n    \"password\":\"123456\"\r\n}"
+            }
+        },
+        {
+            "_id": "849a9a4a-211b-4e9d-b6ea-2909d831922f",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "285e35a0-d4d6-4292-9d3e-2265c1bd2c89",
+            "name": "actualizarADMIN",
+            "url": "localhost:8080/api/adminUsers/editarAdmin/647153ef0e5dc5693dd69609",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2023-06-10T21:46:45.842Z",
+            "modified": "2023-06-10T21:46:45.842Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"nombre\":\"pendejo\",\r\n    \"correo\":\"jojojo@gmail.com\"\r\n    \r\n}"
+            }
+        },
+        {
+            "_id": "f52e7f2e-655b-4238-a2b2-56e57f1cfe18",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "285e35a0-d4d6-4292-9d3e-2265c1bd2c89",
+            "name": "eliminarAdmin",
+            "url": "localhost:8080/api/adminUsers/eliminarAdmin/647153ef0e5dc5693dd69609",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2023-06-10T21:46:45.843Z",
+            "modified": "2023-06-10T21:46:45.843Z",
+            "headers": []
+        },
+        {
+            "_id": "b480703f-e905-45ed-9651-bf75a271acf8",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "b5d026b4-c841-4c2c-9c8f-03d5237ddb9a",
+            "name": "post user",
+            "url": "localhost:8080/api/users/agregarUser",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2023-06-10T21:46:45.844Z",
+            "modified": "2023-06-11T01:05:35.986Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDg1MTg2MDEyYWEyMTE1YzMyOWUwMTAiLCJpYXQiOjE2ODY0NDQxMzQsImV4cCI6MTY4NjQ2MjEzNH0.xMv3-w1X-AAKiKRuU-kQcSbKR9d1EFab8qMfw67QcXc"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"nombre\":\"Jose\",\n    \"correo\":\"jose11@gmail.com\",\n    \"nickname\":\"josias1\",\n    \"password\":\"123456\",\n    \"DPI\":1234567890101,\n    \"direccion\":\"4ta calle zona 23\",\n    \"celular\":1128883,\n    \"trabajo\":\"guardian\",\n    \"ingresos\":3000,\n    \"cuentas\":[\n        \n    ],\n    \"img\": \"https://assets-es.imgfoot.com/media/cache/1200x1200/lionel-messi-psg-2223-1.jpg\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "4ee93de6-a371-453f-b9c2-044536846869",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "b5d026b4-c841-4c2c-9c8f-03d5237ddb9a",
+            "name": "post user 2",
+            "url": "localhost:8080/api/users/agregarUser",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2023-06-10T21:46:45.845Z",
+            "modified": "2023-06-11T00:42:48.184Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDg1MTg2MDEyYWEyMTE1YzMyOWUwMTAiLCJpYXQiOjE2ODY0NDQxMzQsImV4cCI6MTY4NjQ2MjEzNH0.xMv3-w1X-AAKiKRuU-kQcSbKR9d1EFab8qMfw67QcXc"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"nombre\":\"Camavinga\",\n    \"correo\":\"pedri@gmail.com\",\n    \"nickname\":\"chepe\",\n    \"password\":\"123456\",\n    \"DPI\":1234567898931,\n    \"direccion\":\"4ta calle zona 23\",\n    \"celular\":89347,\n    \"trabajo\":\"guardian\",\n    \"ingresos\":3000,\n    \"cuentas\":[\n        \n    ],\n    \"img\": \"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/eduardo-camavinga-of-real-madrid-cf-looks-on-during-the-news-photo-1681463768.jpg?crop=0.672xw:1.00xh;0.200xw,0&resize=1200:*\"\n    \n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "361adff6-0d51-4d85-b71b-3066362bee30",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "b5d026b4-c841-4c2c-9c8f-03d5237ddb9a",
+            "name": "Login User",
+            "url": "localhost:8080/api/auth/login",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2023-06-10T21:46:45.846Z",
+            "modified": "2023-06-10T21:46:45.846Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"correo\": \"jose@gmail.com\",\r\n    \"password\": \"123456\"\r\n}"
+            }
+        },
+        {
+            "_id": "796daf5a-df30-4923-bb0d-55fc4d55ec43",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "b5d026b4-c841-4c2c-9c8f-03d5237ddb9a",
+            "name": "putUser",
+            "url": "localhost:8080/api/users/editarUser/64724606e8805a7911f631ad",
+            "method": "PUT",
+            "sortNum": 100000,
+            "created": "2023-06-10T21:46:45.848Z",
+            "modified": "2023-06-10T21:46:45.848Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"nombre\":\"josesito\",\r\n    \"correo\":\"joss@gmail.com\",\r\n    \"nickname\":\"josiasPro\",\r\n    \"password\":\"123456\",\r\n    \"DPI\":1234567890101,\r\n    \"direccion\":\"4ta calle zona 33\",\r\n    \"celular\":112883331111,\r\n    \"trabajo\":\"guardian\",\r\n    \"ingresos\":3500\r\n    \r\n}"
+            }
+        },
+        {
+            "_id": "54c77051-b513-4dde-8917-af030d4ce327",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "b5d026b4-c841-4c2c-9c8f-03d5237ddb9a",
+            "name": "eliminarUser",
+            "url": "localhost:8080/api/users/eliminarUser/64724606e8805a7911f631ad",
+            "method": "DELETE",
+            "sortNum": 110000,
+            "created": "2023-06-10T21:46:45.849Z",
+            "modified": "2023-06-10T21:46:45.849Z",
+            "headers": []
+        },
+        {
+            "_id": "0187e256-5fc3-4baf-84be-ae0598137404",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "b5d026b4-c841-4c2c-9c8f-03d5237ddb9a",
+            "name": "GetUserById",
+            "url": "",
+            "method": "GET",
+            "sortNum": 120000,
+            "created": "2023-06-10T21:46:45.850Z",
+            "modified": "2023-06-10T21:46:45.850Z",
+            "headers": []
+        },
+        {
+            "_id": "fc4b2a3b-2bad-4481-8028-3d7e2f1ab508",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "b5d026b4-c841-4c2c-9c8f-03d5237ddb9a",
+            "name": "mostrarUsers",
+            "url": "",
+            "method": "GET",
+            "sortNum": 130000,
+            "created": "2023-06-10T21:46:45.851Z",
+            "modified": "2023-06-10T21:46:45.851Z",
+            "headers": []
+        },
+        {
+            "_id": "d6817e48-a51f-4822-806e-779cee8db7a4",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "fce6975a-dd47-4ed6-a00a-b38ea5e37c12",
+            "name": "Crear cuenta",
+            "url": "localhost:8080/api/accounts/crearcuenta",
+            "method": "POST",
+            "sortNum": 140000,
+            "created": "2023-06-10T21:46:45.852Z",
+            "modified": "2023-06-11T01:05:50.608Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDg1MTg2MDEyYWEyMTE1YzMyOWUwMTAiLCJpYXQiOjE2ODY0NDQxMzQsImV4cCI6MTY4NjQ2MjEzNH0.xMv3-w1X-AAKiKRuU-kQcSbKR9d1EFab8qMfw67QcXc"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"propietario\":\"64851ddfef5e1c61577949a1\",\n    \"tipoCuenta\":\"ahorro\",\n    \"saldo\": 400\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "d69c20e9-d599-493c-9a54-e2302cd5d3cb",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "fce6975a-dd47-4ed6-a00a-b38ea5e37c12",
+            "name": "Crear cuenta Copy",
+            "url": "localhost:8080/api/accounts/crearcuenta",
+            "method": "POST",
+            "sortNum": 150000,
+            "created": "2023-06-10T21:46:45.853Z",
+            "modified": "2023-06-10T21:46:45.853Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDdiYjdmMTBjZjUzMDMyNmU0MGZmZDciLCJpYXQiOjE2ODU4Mjk3NjUsImV4cCI6MTY4NTg0Nzc2NX0.-JK-JBprqIfr4DVeqMRAia74b0NPSoNmfGICqa9GBjA"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"propietario\":\"647bb8a436523a489e759bb6\",\r\n    \"tipoCuenta\":\"ahorro\",\r\n    \"saldo\": 40000\r\n}"
+            }
+        },
+        {
+            "_id": "33ad519e-b6c5-4770-890b-76274209fa4e",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "fce6975a-dd47-4ed6-a00a-b38ea5e37c12",
+            "name": "Editar Saldo",
+            "url": "localhost:8080/api/accounts/editar/6476b4cfbe51997603dd4f80",
+            "method": "PUT",
+            "sortNum": 160000,
+            "created": "2023-06-10T21:46:45.854Z",
+            "modified": "2023-06-10T21:46:45.854Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDc2YjQ3OWY2YzFjYTJmNTNlMGQ5MjQiLCJpYXQiOjE2ODU1MDEwNzMsImV4cCI6MTY4NTUxOTA3M30.awEiaiqr29duwjRvhmzjOfYVTcTvUhQL3-qm__2mHFs"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"tipoCuenta\":\"monetaria\",\r\n    \"saldo\":50000\r\n}"
+            }
+        },
+        {
+            "_id": "4c5a3dd2-bf8e-4172-b4d7-474068b5d180",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "fce6975a-dd47-4ed6-a00a-b38ea5e37c12",
+            "name": "Eliminar cuenta",
+            "url": "localhost:8080/api/accounts/eliminar/6474e07eb12cf5cda0ba69a7",
+            "method": "DELETE",
+            "sortNum": 170000,
+            "created": "2023-06-10T21:46:45.855Z",
+            "modified": "2023-06-10T21:46:45.855Z",
+            "headers": []
+        },
+        {
+            "_id": "b36fe1a4-6997-4047-b606-8001ef3dd15b",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "fce6975a-dd47-4ed6-a00a-b38ea5e37c12",
+            "name": "Mostrar cuentas",
+            "url": "localhost:8080/api/accounts/mostrar",
+            "method": "GET",
+            "sortNum": 180000,
+            "created": "2023-06-10T21:46:45.856Z",
+            "modified": "2023-06-10T21:46:45.856Z",
+            "headers": []
+        },
+        {
+            "_id": "2a8ffcc9-fd9b-4cd8-bd13-f38b2ad25b88",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "7a537eef-fdc0-484e-8c9b-44f067cd6be2",
+            "name": "Transferencia",
+            "url": "localhost:8080/api/transactions/hacerTransaccion",
+            "method": "POST",
+            "sortNum": 190000,
+            "created": "2023-06-10T21:46:45.857Z",
+            "modified": "2023-06-10T21:46:45.857Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDdiYjg5NzM2NTIzYTQ4OWU3NTliYjAiLCJpYXQiOjE2ODU4MzA4NTUsImV4cCI6MTY4NTg0ODg1NX0.3ABXMDdIsdVNx7zyFv3NRoSOxg1cUz93m0D9c3Jx7g4",
+                    "isDisabled": true
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"cuentaOrigen\":\"87430136-c37b-423b-ac65-163ab1e202d7\", \r\n    \"cuentaDestino\": \"8fccd324-b9e0-4385-8066-bfc39dcad8e7\", \r\n    \"monto\": 100,\r\n    \"descripcion\": \"pago cas\" \r\n}"
+            }
+        },
+        {
+            "_id": "8c5dd8b2-c22a-4de0-81ef-e37919781d76",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "7a537eef-fdc0-484e-8c9b-44f067cd6be2",
+            "name": "New Request",
+            "url": "localhost:8080/api/transactions/vertransacciones/87430136-c37b-423b-ac65-163ab1e202d7",
+            "method": "GET",
+            "sortNum": 200000,
+            "created": "2023-06-10T21:46:45.858Z",
+            "modified": "2023-06-10T21:46:45.858Z",
+            "headers": []
+        },
+        {
+            "_id": "f63d7e7d-16b5-4135-b5a4-9f81bc766d5c",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "b6cc9c03-8091-4dca-8cd3-8729dd9bb1a1",
+            "name": "Mostrar divisas",
+            "url": "localhost:8080/api/divisa/mostrarDivisas",
+            "method": "GET",
+            "sortNum": 210000,
+            "created": "2023-06-10T21:46:45.859Z",
+            "modified": "2023-06-10T21:46:45.859Z",
+            "headers": []
+        },
+        {
+            "_id": "b766e697-52b8-4e20-b0b3-2e5ca85cce90",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "28b98ba4-2ddb-4a09-b936-1d53c65e62aa",
+            "name": "Agregar Favoritos",
+            "url": "localhost:8080/api/favorites/agregarContacto/6485189912aa2115c329e02a",
+            "method": "POST",
+            "sortNum": 220000,
+            "created": "2023-06-10T21:46:45.860Z",
+            "modified": "2023-06-11T00:44:03.134Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDdkNGRiNWEzNThiZWJhZjZjNWI1ZTQiLCJpYXQiOjE2ODYwOTU0MzksImV4cCI6MTY4NjExMzQzOX0.PGReZoesOJ9GEoGUGTYfVpXdxmEAVxoOjyrnRXlFDo4"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"noCuentaUsuario\": \"294fc707-f608-46b4-a65c-05c524cf31bc\",\n  \"nickname\":\"Angel\"\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "01df2477-a0e1-47fd-9889-b8ddb57374ba",
+            "colId": "4543fdbc-80aa-4fbf-93f3-d144863061a0",
+            "containerId": "28b98ba4-2ddb-4a09-b936-1d53c65e62aa",
+            "name": "Mostrar Favoritos",
+            "url": "localhost:8080/api/favorites/mostrar/4a44ff9b-4765-4502-a4c0-9e67f6cd5404",
+            "method": "GET",
+            "sortNum": 230000,
+            "created": "2023-06-10T21:46:45.861Z",
+            "modified": "2023-06-11T00:43:28.637Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

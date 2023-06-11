@@ -2,8 +2,11 @@ const { response, request } = require('express');
 const bcrypt = require('bcryptjs');
 const Cuenta = require('../models/account')
 const { v4: uuidv4 } = require('uuid');
+
 const Usuario = require('../models/user');
 
+const Usuario = require('../models/user');
+const Favorito = require('../models/favorite');
 
 const mostrarCuentasActivas = async (req, res) => {
   try {
@@ -22,8 +25,24 @@ const mostrarCuentasActivas = async (req, res) => {
   }
 };
 
-const obtenerCuentasConMasTransferencias = async (req, res) => {
+const misCuentas = async (req, res) => {
+  const id = req.usuario.id;
+  try {
+    // Buscar todas las cuentas con estado activo
+    const cuentasActivas = await Cuenta.find({propietario: id});
 
+    res.json({
+      cuentas: cuentasActivas
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: 'Error al obtener las cuentas bancarias activas'
+    });
+  }
+};
+
+const obtenerCuentasConMasTransferencias = async (req, res) => {
   try {
     const orden = req.query.odren || 'asc';
     const cuentas = await Cuenta.find()
@@ -82,6 +101,11 @@ const crearCuentaBancaria = async (req, res) => {
 
     // Guardar la cuenta en la base de datos
     await nuevaCuenta.save();
+    const nuevoFavorito = new Favorito({numeroCuenta: numeroCuenta, tipoCuenta: tipoCuenta});
+    await nuevoFavorito.save();
+    // Agregar el id de la cuenta al nuevo propietario
+    propietarioExistente.cuentas.push(nuevaCuenta._id);
+    await propietarioExistente.save();
 
     // Agregar el id de la cuenta al nuevo propietario
     propietarioExistente.cuentas.push(nuevaCuenta._id);
@@ -170,6 +194,7 @@ module.exports = {
   crearCuentaBancaria,
   editarSaldoCuenta,
   eliminarCuenta,
+  misCuentas,
   mostrarCuentasActivas,
   obtenerCuentasConMasTransferencias
 };
