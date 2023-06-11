@@ -1,7 +1,7 @@
 const { dbConection } = require("../database/config");
 const express = require("express");
 const cors = require("cors");
-const { defaulUser} = require("../controllers/user");
+const { defaultUser } = require("../controllers/user");
 const { defaultAdmin} = require("../controllers/adminUser");
 
 //const {crearRoles} = require("../middlewares/roles")
@@ -33,6 +33,7 @@ class Server {
 
    // defaultAdmin();
     defaultAdmin();
+    // defaultUser();
     
   }
   middlewares() {

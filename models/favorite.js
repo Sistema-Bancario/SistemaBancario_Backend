@@ -24,22 +24,12 @@ const FavoritoSchema = Schema({
                 type: String,
                 default: ''
             },
-            img:{
+            img: {
                 type: String,
                 default: ''
             }
-        }],
+        }]
     }
 }, { timestamps: true });
-    nickname: {
-        type: String,
-        required: [true, 'El nickname es obligatorio'],
-        unique: true
-    },
-    fecha: {
-        type: Date,
-        default: Date.now
-    }
-});
 
 module.exports = model('Favorito', FavoritoSchema);

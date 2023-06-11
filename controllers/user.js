@@ -8,17 +8,12 @@ const jwt = require('jsonwebtoken');
 
 const postUser = async (req = request, res = response) => {
     //Desestructuración
-
-    const { nombre, correo, nickname, password, DPI, direccion, celular, trabajo, ingresos } = req.body;
-    const userGuardadoDB = new User({ nombre, correo, nickname, password, DPI, direccion, celular, trabajo, ingresos});
-    const cuentas = [];
-    const { nombre, correo, nickname, password,  DPI, direccion, celular,img, trabajo, ingresos } = req.body;
     const cuentas = [];
     const { nombre, correo, nickname, password,  DPI, direccion, celular, trabajo, ingresos } = req.body;
     
     const data = {
         nombre,
-        correo,
+        correo, 
         nickname,
         password,
         cuentas: [...cuentas],
@@ -43,30 +38,30 @@ const postUser = async (req = request, res = response) => {
     });
 }
 
-const defaultUser = async (req, res) => {
-    try {
-        let user = new User();
-        user.nombre = "Jorge";
-        user.nickname = "George";
-        user.DPI = "1234567890101";
-        user.ingresos = "4500";
-        user.trabajo = "Cajero en La Torre";
-        user.password = "123456";
-        user.direccion = "4ta calle 10-83 zona 3";
-        user.correo = "jorge@gmail.com";
-        user.rol = "USER_ROLE";
-        const userEncontrado = await User.findOne({ correo: user.correo });
-        if (userEncontrado) return console.log("El administrador está listo");
-        user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync());
-        user = await user.save();
-        if (!user) return console.log("El administrador no está listo!");
-        return console.log("El administrador está listo!");
-    } catch (err) {
-        throw new Error(err);
-    }
+// const defaultUser = async (req, res) => {
+//     try {
+//         let user = new User();
+//         user.nombre = "Jorge";
+//         user.nickname = "George";
+//         user.DPI = "1234567890101";
+//         user.ingresos = "4500";
+//         user.trabajo = "Cajero en La Torre";
+//         user.password = "123456";
+//         user.direccion = "4ta calle 10-83 zona 3";
+//         user.correo = "jorge@gmail.com";
+//         user.rol = "USER_ROLE";
+//         const userEncontrado = await User.findOne({ correo: user.correo });
+//         if (userEncontrado) return console.log("El administrador está listo");
+//         user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync());
+//         user = await user.save();
+//         if (!user) return console.log("El administrador no está listo!");
+//         return console.log("El administrador está listo!");
+//     } catch (err) {
+//         throw new Error(err);
+//     }
 
 
-};
+// };
 
 const getUsers = async (req = request, res = response) => {
 
@@ -265,6 +260,7 @@ const obtenerCuentasUsuario = async (req, res) => {
         res.json({error: 'No se encontro el usuario'});
     }
 }
+
     const deleteMiPerfil = async (req = request, res = response) => {
         //Req.params sirve para traer parametros de las rutas
         const id = req.usuario.id;
@@ -285,7 +281,7 @@ module.exports = {
     deleteUser,
     postUser,
     getUsersById,
-    defaultUser,
+    // defaultUser,
     putMiUser,
     obtenerCuentasUsuario,
     getMiUser,

@@ -1,3 +1,7 @@
+
+const { response, request } = require('express');
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 const Favorito = require('../models/favorite');
 const Cuenta = require('../models/account');
 const Usuario = require('../models/user');
@@ -50,10 +54,6 @@ const agregarContacto = async (req, res) => {
     }
   };
   
-  module.exports = {
-    agregarContacto
-  };
-
   const eliminarContacto = async (req, res) => {
     const { id } = req.params;
     const { idUsuario } = req.body;
@@ -98,20 +98,6 @@ const eliminarListaContactos = async (req, res) => {
     }
 };
 
-module.exports = {
-    getFavoritos,
-    agregarContacto,
-    eliminarContacto,
-    eliminarListaContactos
-};
-=======
-const { response, request } = require('express');
-const Favorito = require('../models/favorite');
-const User = require('../models/user');
-const jwt = require('jsonwebtoken');
-const mongoose = require('mongoose');
-
-
 const mostrarCuentasFavoritas = async (req, res) => {
     try {
         const cuentasFavoritas = await Favorito.find()
@@ -128,7 +114,6 @@ const mostrarCuentasFavoritas = async (req, res) => {
         });
     }
 };
-
 
 const postCuentaFavorita = async (req, res) => {
     try {
@@ -190,5 +175,9 @@ const postCuentaFavorita = async (req, res) => {
 
 module.exports = {
     mostrarCuentasFavoritas,
-    postCuentaFavorita
+    postCuentaFavorita,
+    getFavoritos,
+    agregarContacto,
+    eliminarContacto,
+    eliminarListaContactos
 }

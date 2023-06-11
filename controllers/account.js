@@ -1,16 +1,12 @@
 const { response, request } = require('express');
 const bcrypt = require('bcryptjs');
-const Cuenta = require('../models/account')
+const Cuenta = require('../models/account');
 const { v4: uuidv4 } = require('uuid');
-
-const Usuario = require('../models/user');
-
 const Usuario = require('../models/user');
 const Favorito = require('../models/favorite');
 
-const mostrarCuentasActivas = async (req, res) => {
+const mostrarCuentasActivas = async (req = request, res = response) => {
   try {
-    // Buscar todas las cuentas con estado activo
     const cuentasActivas = await Cuenta.find({ estado: true });
 
     res.json({
@@ -25,11 +21,10 @@ const mostrarCuentasActivas = async (req, res) => {
   }
 };
 
-const misCuentas = async (req, res) => {
+const misCuentas = async (req = request, res = response) => {
   const id = req.usuario.id;
   try {
-    // Buscar todas las cuentas con estado activo
-    const cuentasActivas = await Cuenta.find({propietario: id});
+    const cuentasActivas = await Cuenta.find({ propietario: id });
 
     res.json({
       cuentas: cuentasActivas
@@ -42,18 +37,17 @@ const misCuentas = async (req, res) => {
   }
 };
 
-const obtenerCuentasConMasTransferencias = async (req, res) => {
+const obtenerCuentasConMasTransferencias = async (req = request, res = response) => {
   try {
     const orden = req.query.odren || 'asc';
     const cuentas = await Cuenta.find()
-    .sort({ cantidadTransferencias: orden === 'desc' ? -1 : 1 })
-    .populate('propietario', 'nombre correo')
-    .exec();
+      .sort({ cantidadTransferencias: orden === 'desc' ? -1 : 1 })
+      .populate('propietario', 'nombre correo')
+      .exec();
 
     res.json({
       cuentas
-    })
-   
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({
@@ -62,18 +56,15 @@ const obtenerCuentasConMasTransferencias = async (req, res) => {
   }
 };
 
-const crearCuentaBancaria = async (req, res) => {
+const crearCuentaBancaria = async (req = request, res = response) => {
   try {
     const { propietario, tipoCuenta, saldo } = req.body;
-
-    // Generar número de cuenta aleatorio
     const numeroCuenta = uuidv4();
 
     if (!numeroCuenta) {
       throw new Error('No se pudo generar el número de cuenta');
     }
 
-    // Verificar si el propietario existe
     const propietarioExistente = await Usuario.findById(propietario);
 
     if (!propietarioExistente) {
@@ -82,7 +73,6 @@ const crearCuentaBancaria = async (req, res) => {
       });
     }
 
-    // Verificar si la cuenta de origen ya existe
     const cuentaExistente = await Cuenta.findOne({ numeroCuenta });
 
     if (cuentaExistente) {
@@ -91,7 +81,6 @@ const crearCuentaBancaria = async (req, res) => {
       });
     }
 
-    // Crear la cuenta bancaria
     const nuevaCuenta = new Cuenta({
       propietario,
       numeroCuenta,
@@ -99,15 +88,9 @@ const crearCuentaBancaria = async (req, res) => {
       saldo
     });
 
-    // Guardar la cuenta en la base de datos
     await nuevaCuenta.save();
-    const nuevoFavorito = new Favorito({numeroCuenta: numeroCuenta, tipoCuenta: tipoCuenta});
+    const nuevoFavorito = new Favorito({ numeroCuenta: numeroCuenta, tipoCuenta: tipoCuenta });
     await nuevoFavorito.save();
-    // Agregar el id de la cuenta al nuevo propietario
-    propietarioExistente.cuentas.push(nuevaCuenta._id);
-    await propietarioExistente.save();
-
-    // Agregar el id de la cuenta al nuevo propietario
     propietarioExistente.cuentas.push(nuevaCuenta._id);
     await propietarioExistente.save();
 
@@ -123,20 +106,17 @@ const crearCuentaBancaria = async (req, res) => {
   }
 };
 
-
-const editarSaldoCuenta = async (req, res) => {
+const editarSaldoCuenta = async (req = request, res = response) => {
   try {
     const { id } = req.params;
     const { saldo } = req.body;
 
-    // Validar que el saldo sea un número válido
     if (typeof saldo !== 'number' || isNaN(saldo)) {
       return res.status(400).json({
         message: 'El saldo proporcionado no es válido'
       });
     }
 
-    // Editar el saldo de la cuenta por el ID
     const cuentaEditada = await Cuenta.findByIdAndUpdate(id, { saldo }, { new: true });
 
     if (!cuentaEditada) {
@@ -157,11 +137,9 @@ const editarSaldoCuenta = async (req, res) => {
   }
 };
 
-const eliminarCuenta = async (req, res) => {
+const eliminarCuenta = async (req = request, res = response) => {
   try {
     const { id } = req.params;
-
-    // Buscar la cuenta por su ID
     const cuenta = await Cuenta.findById(id);
 
     if (!cuenta) {
@@ -170,10 +148,7 @@ const eliminarCuenta = async (req, res) => {
       });
     }
 
-    // Establecer el estado de la cuenta en falso
     cuenta.estado = false;
-
-    // Guardar los cambios en la base de datos
     await cuenta.save();
 
     res.json({
@@ -188,14 +163,11 @@ const eliminarCuenta = async (req, res) => {
   }
 };
 
-
-
 module.exports = {
+  mostrarCuentasActivas,
+  misCuentas,
+  obtenerCuentasConMasTransferencias,
   crearCuentaBancaria,
   editarSaldoCuenta,
-  eliminarCuenta,
-  misCuentas,
-  mostrarCuentasActivas,
-  obtenerCuentasConMasTransferencias
+  eliminarCuenta
 };
-
