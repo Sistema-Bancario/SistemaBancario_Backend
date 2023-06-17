@@ -21,13 +21,32 @@ const mostrarCuentasActivas = async (req = request, res = response) => {
   }
 };
 
+const mostrarCuentasSaldoId = async (req = request, res = response) => {
+  const {id} = req.params;
+  try {
+    const cuentaId = await Cuenta.findById(id);
+    const saldo = cuentaId.saldo;
+
+    res.json({
+      message: 'Cuenta con saldo:',
+      saldo
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: 'Error al obtener las cuentas bancarias activas'
+    });
+  }
+};
+
 const misCuentas = async (req = request, res = response) => {
   const id = req.usuario.id;
   try {
     const cuentasActivas = await Cuenta.find({ propietario: id });
-
+    const saldo= cuentasActivas.saldo;
     res.json({
-      cuentas: cuentasActivas
+      cuentas: cuentasActivas,
+      saldo
     });
   } catch (error) {
     console.error(error);
@@ -169,5 +188,6 @@ module.exports = {
   obtenerCuentasConMasTransferencias,
   crearCuentaBancaria,
   editarSaldoCuenta,
-  eliminarCuenta
+  eliminarCuenta,
+  mostrarCuentasSaldoId
 };
