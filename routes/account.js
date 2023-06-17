@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { validarCampos } = require('../middlewares/validar-campos');
-const { mostrarCuentasActivas, misCuentas, obtenerCuentasConMasTransferencias, crearCuentaBancaria, editarSaldoCuenta, eliminarCuenta } = require('../controllers/account');
+const { mostrarCuentasActivas, misCuentas, obtenerCuentasConMasTransferencias, crearCuentaBancaria, editarSaldoCuenta, eliminarCuenta, mostrarCuentasId, mostrarCuentasSaldoId } = require('../controllers/account');
 const { validarJWT } = require('../middlewares/validar-jwt');
 const { validarjwtAdmin } = require('../middlewares/validar-jwtAdmin');
 const { check } = require('express-validator');
@@ -34,6 +34,10 @@ router.put('/editar/:id', [
   check('saldo', 'El saldo es obligatorio').not().isEmpty(),
   validarEdicionSaldo
 ], editarSaldoCuenta);
+
+router.get('/cuentaSaldoId/:id', [
+  validarjwtAdmin,
+], mostrarCuentasSaldoId);
 
 router.delete('/eliminar/:id', [
   validarjwtAdmin,
