@@ -16,7 +16,10 @@ router.get('/misCuentas', [
   validarJWT,
   validarCampos], misCuentas);
 
-router.get('/mostrarCuentasConMasTransferencias', obtenerCuentasConMasTransferencias);
+  router.get('/mostrarCuentasConMasTransferencias/:id', [
+    validarjwtAdmin
+  ], obtenerCuentasConMasTransferencias);
+  
 
 router.post('/crearcuenta', [
   validarjwtAdmin,

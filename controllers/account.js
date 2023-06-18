@@ -56,10 +56,12 @@ const misCuentas = async (req = request, res = response) => {
   }
 };
 
-const obtenerCuentasConMasTransferencias = async (req = request, res = response) => {
+const obtenerCuentasConMasTransferencias = async (req, res) => {
   try {
-    const orden = req.query.odren || 'asc';
-    const cuentas = await Cuenta.find()
+    const { id } = req.params; 
+    const orden = req.query.orden || 'asc';
+
+    const cuentas = await Cuenta.find({ propietario: id })
       .sort({ cantidadTransferencias: orden === 'desc' ? -1 : 1 })
       .populate('propietario', 'nombre correo')
       .exec();
@@ -74,6 +76,7 @@ const obtenerCuentasConMasTransferencias = async (req = request, res = response)
     });
   }
 };
+
 
 const crearCuentaBancaria = async (req = request, res = response) => {
   try {
