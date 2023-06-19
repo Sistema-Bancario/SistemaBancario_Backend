@@ -22,7 +22,7 @@ const mostrarCuentasActivas = async (req = request, res = response) => {
 };
 
 const mostrarCuentasSaldoId = async (req = request, res = response) => {
-  const {id} = req.params;
+  const { id } = req.params;
   try {
     const cuentaId = await Cuenta.findById(id);
     const saldo = cuentaId.saldo;
@@ -39,11 +39,30 @@ const mostrarCuentasSaldoId = async (req = request, res = response) => {
   }
 };
 
+const buscarCuentaPorNumero = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const cuenta = await Cuenta.findOne({ numeroCuenta: id }).populate('propietario');
+
+    if (!cuenta) {
+      return res.status(404).json({ mensaje: 'No se encontró la cuenta' });
+    }
+    res.json({ cuenta });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensaje: 'Error al buscar la cuenta por número de cuenta' });
+  }
+};
+
+
+
+
+
 const misCuentas = async (req = request, res = response) => {
   const id = req.usuario.id;
   try {
     const cuentasActivas = await Cuenta.find({ propietario: id });
-    const saldo= cuentasActivas.saldo;
+    const saldo = cuentasActivas.saldo;
     res.json({
       cuentas: cuentasActivas,
       saldo
@@ -58,7 +77,7 @@ const misCuentas = async (req = request, res = response) => {
 
 const obtenerCuentasConMasTransferencias = async (req, res) => {
   try {
-    const { id } = req.params; 
+    const { id } = req.params;
     const orden = req.query.orden || 'asc';
 
     const cuentas = await Cuenta.find({ propietario: id })
@@ -73,6 +92,20 @@ const obtenerCuentasConMasTransferencias = async (req, res) => {
     console.error(error);
     res.status(500).json({
       message: 'Error al obtener las cuentas bancarias activas'
+    });
+  }
+};
+
+const historial = async (req = request, res = response) => {
+  const { id } = req.params
+  try {
+    const cuentasActivas = await Cuenta.find({ numeroCuenta: id }).populate('transferencias');
+
+    res.json({ cuentasActivas });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: 'Error al obtener el historial'
     });
   }
 };
@@ -192,5 +225,7 @@ module.exports = {
   crearCuentaBancaria,
   editarSaldoCuenta,
   eliminarCuenta,
-  mostrarCuentasSaldoId
+  mostrarCuentasSaldoId,
+  historial,
+  buscarCuentaPorNumero
 };

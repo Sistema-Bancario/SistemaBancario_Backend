@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { validarCampos } = require('../middlewares/validar-campos');
-const { mostrarCuentasActivas, misCuentas, obtenerCuentasConMasTransferencias, crearCuentaBancaria, editarSaldoCuenta, eliminarCuenta, mostrarCuentasId, mostrarCuentasSaldoId } = require('../controllers/account');
+const { mostrarCuentasActivas, misCuentas, obtenerCuentasConMasTransferencias, crearCuentaBancaria, editarSaldoCuenta, eliminarCuenta, mostrarCuentasId, mostrarCuentasSaldoId, historial, buscarCuentaPorNumero } = require('../controllers/account');
 const { validarJWT } = require('../middlewares/validar-jwt');
 const { validarjwtAdmin } = require('../middlewares/validar-jwtAdmin');
 const { check } = require('express-validator');
@@ -16,10 +16,18 @@ router.get('/misCuentas', [
   validarJWT,
   validarCampos], misCuentas);
 
-  router.get('/mostrarCuentasConMasTransferencias/:id', [
-    validarjwtAdmin
-  ], obtenerCuentasConMasTransferencias);
-  
+router.get('/mostrarCuentasConMasTransferencias/:id', [
+  validarjwtAdmin
+], obtenerCuentasConMasTransferencias);
+
+router.get('/historial/:id', [
+  validarJWT,
+  validarCampos], historial);
+
+  router.get('/buscarporNum/:id', [
+    validarJWT,
+    validarCampos
+  ], buscarCuentaPorNumero);
 
 router.post('/crearcuenta', [
   validarjwtAdmin,
