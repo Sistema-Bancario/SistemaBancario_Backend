@@ -128,6 +128,27 @@ const crearCuentaBancaria = async (req = request, res = response) => {
       });
     }
 
+    const cuentaMonetariaExistente = await Cuenta.findOne({
+      propietario: propietarioExistente._id,
+      tipoCuenta: 'monetaria'
+    });
+
+    const cuentaAhorroExistente = await Cuenta.findOne({
+      propietario: propietarioExistente._id,
+      tipoCuenta: 'ahorro'
+    });
+
+    if (
+      (tipoCuenta === 'monetaria' && cuentaMonetariaExistente) ||
+      (tipoCuenta === 'ahorro' && cuentaAhorroExistente)
+    ) {
+      const cuentaExistenteTexto = tipoCuenta === 'monetaria' ? 'monetaria' : 'de ahorro';
+
+      return res.status(400).json({
+        message: `El propietario ya tiene una cuenta ${cuentaExistenteTexto}`
+      });
+    }
+
     const cuentaExistente = await Cuenta.findOne({ numeroCuenta });
 
     if (cuentaExistente) {
@@ -160,6 +181,9 @@ const crearCuentaBancaria = async (req = request, res = response) => {
     });
   }
 };
+
+
+
 
 const editarSaldoCuenta = async (req = request, res = response) => {
   try {

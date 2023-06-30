@@ -34,9 +34,11 @@ const transferir = async (req, res) => {
 
     if (cuentaOrigenDB.saldo < monto) {
       return res.status(400).json({
+        error: true,
         message: 'Saldo insuficiente en la cuenta de origen'
       });
     }
+    
 
     cuentaOrigenDB.saldo -= monto;
     cuentaDestinoDB.saldo += monto;

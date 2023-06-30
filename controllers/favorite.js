@@ -25,7 +25,7 @@ const getFavoritos = async (req, res) => {
 
 const agregarContacto = async (req, res) => {
     const { id } = req.params; // ID del favorito
-    const { noCuentaUsuario, nickname } = req.body;
+    const { noCuentaUsuario, nickname, tipoCuenta } = req.body;
     const cuentaUsuario = await Cuenta.findOne({ numeroCuenta: noCuentaUsuario});
     const usuario = await Usuario.findById({_id: cuentaUsuario.propietario})
     try {
@@ -40,7 +40,7 @@ const agregarContacto = async (req, res) => {
         return res.status(404).json({ error: 'No se encontró la cuenta del usuario' });
       }
   
-      favorito.contactos.usuarios.push({ cuentas: noCuentaUsuario, nickname: nickname, img: usuario.img });
+      favorito.contactos.usuarios.push({ cuentas: noCuentaUsuario, nickname: nickname, img: usuario.img, tipoCuenta: tipoCuenta });
   
       const favoritoActualizado = await favorito.save();
   
